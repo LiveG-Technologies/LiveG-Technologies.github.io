@@ -33,7 +33,8 @@
                 ],  
                 // Terms of service url can be specified and will show up in the widget.  
                 tosUrl: 'http://stepintotech.org/club-details',
-                accountChooserEnabled: false
+                'accountChooserEnabled': false,
+                'credentialHelper': firebaseui.auth.CredentialHelper.NONE
                 };
             } else {
                 var uiConfig = {  
@@ -44,7 +45,8 @@
                 ],  
                 // Terms of service url can be specified and will show up in the widget.  
                 tosUrl: 'http://stepintotech.org/club-details',
-                accountChooserEnabled: false 
+                'accountChooserEnabled': false,
+                'credentialHelper': firebaseui.auth.CredentialHelper.NONE
                 };
             } 
             // Initialize the FirebaseUI Widget using Firebase.  
