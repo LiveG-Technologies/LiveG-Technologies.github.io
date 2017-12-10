@@ -1,13 +1,66 @@
-Platform: <code>'<span id="plat"></span>'</code>. <a href="http://localhost:5000/login">Bash Exit (Flask Only)</a>
-<hr>
-<h1>LiveG Server Status</h1>
-<pre>OK</pre>
-<p>Powered By LiveG gSense Server Tools. <a href="http://liveg.tech">liveg.tech</a></p>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>YMTC Cloud Login</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCNyRAjpx4aW2zHQ4DOWOMuGxtM0b371Xc",
+                authDomain: "ymtechclubservers.firebaseapp.com",
+                databaseURL: "https://ymtechclubservers.firebaseio.com",
+                projectId: "ymtechclubservers",
+                storageBucket: "ymtechclubservers.appspot.com",
+                messagingSenderId: "879263599427"
+            };
+        firebase.initializeApp(config);
+        </script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+        <link href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript">
+            function getURLParameter(name) {
+                return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+            }
 
-<script>
-    function getURLParameter(name) {
-        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-    }
-
-    document.getElementById("plat").innerHTML = getURLParameter("p");
-</script>
+            if ( getURLParameter("p") == "os" ) {
+                var uiConfig = {  
+                signInSuccessUrl: 'login.html?p=os',  
+                signInOptions: [  
+                    // Specify providers you want to offer your users.  
+                    firebase.auth.EmailAuthProvider.PROVIDER_ID  
+                ],  
+                // Terms of service url can be specified and will show up in the widget.  
+                tosUrl: 'http://stepintotech.org/club-details'  
+                };
+            } else {
+                var uiConfig = {  
+                signInSuccessUrl: 'login.html',  
+                signInOptions: [  
+                    // Specify providers you want to offer your users.  
+                    firebase.auth.EmailAuthProvider.PROVIDER_ID  
+                ],  
+                // Terms of service url can be specified and will show up in the widget.  
+                tosUrl: 'http://stepintotech.org/club-details'  
+                };
+            } 
+            // Initialize the FirebaseUI Widget using Firebase.  
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());  
+            // The start method will wait until the DOM is loaded.  
+            ui.start('#firebaseui-auth-container', uiConfig);  
+        </script>
+        <style>
+            .mdl-shadow--2dp {
+                box-shadow: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content-large">
+            <center><h1>Sign Into YMTC Cloud</h1></center>
+            <div id="firebaseui-auth-container"></div>
+        </div>
+		<div id="copyright">&copy; Copyright 2017 Step Into Tech | All Rights Reserved. Image &copy; retronator 2017.</div>
+    </body>
+</html>
