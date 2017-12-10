@@ -36,8 +36,6 @@
                 'accountChooserEnabled': false,
                 'credentialHelper': firebaseui.auth.CredentialHelper.NONE
                 };
-
-                document.getElementById("useMessage").innerHTML = "To use this Raspberry Pi, you'll need to sign into the YMTC Cloud.<br><strong>New to YMTC Cloud?</strong> Pop in your email above, and we'll sign you up.";
             } else {
                 var uiConfig = {  
                 signInSuccessUrl: 'login.html',  
@@ -69,5 +67,6 @@
             <center id="useMessage">To view your YMTC Cloud files, you'll need to sign in.<br><strong>New to YMTC Cloud?</strong> Pop in your email above, and we'll sign you up.</center>
         </div>
 		<div id="copyright">&copy; Copyright 2017 Step Into Tech | All Rights Reserved. Image &copy; retronator 2017.</div>
+        <script>if ( getURLParameter("p") == "os" ) { document.getElementById("useMessage").innerHTML = "To use this Raspberry Pi, you'll need to sign into the YMTC Cloud.<br><strong>New to YMTC Cloud?</strong> Pop in your email above, and we'll sign you up."; }</script>
     </body>
 </html>
