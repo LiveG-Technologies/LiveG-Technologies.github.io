@@ -27,7 +27,7 @@
             if (user && user.uid != currentUid) {
                 // Update the UI when a new user signs in.  
                 // Otherwise ignore if this is a token refresh.
-                document.getElementById("content").innerHTML = "<h1>You're in!</h1><p>We know the following:</p><ul><li>Full name: " + user.displayName  + "</li><li>Email: " + user.email + "</li><li>ID: " + user.uid + "</li></ul><a" + firebase.auth().signOut() + ">Sign out!</a>";
+                document.getElementById("content").innerHTML = "<h1>You're in!</h1><p>We know the following:</p><ul><li>Full name: " + user.displayName  + "</li><li>Email: " + user.email + "</li><li>ID: " + user.uid + "</li></ul><a href='javascript:firebase.auth().signOut();'>Sign out!</a>";
             } else {
                 // Sign out operation.
                 window.location.href = "https://liveg-technologies.github.io/ymtechclub/index.html";
