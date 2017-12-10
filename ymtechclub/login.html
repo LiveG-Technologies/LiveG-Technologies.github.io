@@ -18,6 +18,10 @@
         firebase.initializeApp(config);
         </script>
         <script>
+            function getURLParameter(name) {
+                return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+            }
+
         // Track the UID of the current user.  
         var currentUid = null;
         firebase.auth().onAuthStateChanged(function(user) {
@@ -30,7 +34,11 @@
                 document.getElementById("content").innerHTML = "<h1>You're in!</h1><p>We know the following:</p><ul><li>Full name: " + user.displayName  + "</li><li>Email: " + user.email + "</li><li>ID: " + user.uid + "</li></ul><a href='javascript:firebase.auth().signOut();'>Sign out!</a>";
             } else {
                 // Sign out operation.
-                window.location.href = "https://liveg-technologies.github.io/ymtechclub/index.html";
+                if ( getURLParameter("p") == "os" ) {
+                    window.location.href = "file:///home/pi/.system/connect.html";
+                } else {
+                    window.location.href = "https://liveg-technologies.github.io/ymtechclub/index.html";
+                }
             }
         });
         </script>
