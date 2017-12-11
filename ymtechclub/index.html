@@ -52,7 +52,7 @@
             // Initialize the FirebaseUI Widget using Firebase.  
             var ui = new firebaseui.auth.AuthUI(firebase.auth());  
             // The start method will wait until the DOM is loaded.  
-            ui.start('#firebaseui-auth-container', uiConfig);  
+            ui.start('#firebaseui-auth-container', uiConfig);
         </script>
         <style>
             .mdl-shadow--2dp {
@@ -67,6 +67,12 @@
             <center id="useMessage">To view your YMTC Cloud files, you'll need to sign in.<br><strong>New to YMTC Cloud?</strong> Pop in your email above, and we'll sign you up.</center>
         </div>
 		<div id="copyright">&copy; Copyright 2017 Step Into Tech | All Rights Reserved. Image &copy; retronator 2017.</div>
-        <script>if ( getURLParameter("p") == "os" ) { document.getElementById("useMessage").innerHTML = "To use this Raspberry Pi, you'll need to sign into the YMTC Cloud.<br><strong>New to YMTC Cloud?</strong> Pop in your email above, and we'll sign you up."; }</script>
+        <script>
+            if ( getURLParameter("p") == "os" ) { document.getElementById("useMessage").innerHTML = "To use this Raspberry Pi, you'll need to sign into the YMTC Cloud.<br><strong>New to YMTC Cloud?</strong> Pop in your email above, and we'll sign you up."; }
+            
+            if ( getURLParameter("p") != "os" ) {
+                window.location.href = "&copy; Copyright 2017 <a href='http://stepintotech.org' target='_blank'>Step Into Tech</a> | All Rights Reserved. Image &copy; <a href='http://www.retronator.com/post/165088183163/pixelberry-pi-by-retronator-the-next-computer-in' target='_blank'>retronator</a> 2017.";
+            }
+        </script>
     </body>
 </html>

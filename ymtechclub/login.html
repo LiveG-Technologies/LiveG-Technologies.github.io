@@ -22,29 +22,34 @@
                 return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
             }
 
-        // Track the UID of the current user.  
-        var currentUid = null;
-        firebase.auth().onAuthStateChanged(function(user) {
-            // onAuthStateChanged listener triggers every time the user ID token changes.  
-            // This could happen when a new user signs in or signs out.  
-            // It could also happen when the current user ID token expires and is refreshed.  
-            if (user && user.uid != currentUid) {
-                // Update the UI when a new user signs in.  
-                // Otherwise ignore if this is a token refresh.
-                document.getElementById("content").innerHTML = "<h1>You're in!</h1><p>We know the following:</p><ul><li>Full name: " + user.displayName  + "</li><li>Email: " + user.email + "</li><li>ID: " + user.uid + "</li></ul><a href='javascript:firebase.auth().signOut();'>Sign out!</a> <a href='http://localhost:5000/login'>Continue Login</a>";
-            } else {
-                // Sign out operation.
-                if ( getURLParameter("p") == "os" ) {
-                    window.location.href = "https://liveg-technologies.github.io/ymtechclub/index.html?p=os";
+            // Track the UID of the current user.  
+            var currentUid = null;
+            firebase.auth().onAuthStateChanged(function(user) {
+                // onAuthStateChanged listener triggers every time the user ID token changes.  
+                // This could happen when a new user signs in or signs out.  
+                // It could also happen when the current user ID token expires and is refreshed.  
+                if (user && user.uid != currentUid) {
+                    // Update the UI when a new user signs in.  
+                    // Otherwise ignore if this is a token refresh.
+                    document.getElementById("content").innerHTML = "<h1>You're in!</h1><p>We know the following:</p><ul><li>Full name: " + user.displayName  + "</li><li>Email: " + user.email + "</li><li>ID: " + user.uid + "</li></ul><a href='javascript:firebase.auth().signOut();'>Sign out!</a> <a href='http://localhost:5000/login'>Continue Login</a>";
                 } else {
-                    window.location.href = "https://liveg-technologies.github.io/ymtechclub/index.html";
+                    // Sign out operation.
+                    if ( getURLParameter("p") == "os" ) {
+                        window.location.href = "https://liveg-technologies.github.io/ymtechclub/index.html?p=os";
+                    } else {
+                        window.location.href = "https://liveg-technologies.github.io/ymtechclub/index.html";
+                    }
                 }
-            }
-        });
+            });
         </script>
 	</head>
 	<body>
 		<div id="content"><center><img class="loading" src="loading.gif" /><br>Loading...</center></div>
 		<div id="copyright">&copy; Copyright 2017 Step Into Tech | All Rights Reserved. Image &copy; retronator 2017.</div>
+        <script>
+            if ( getURLParameter("p") != "os" ) {
+                    window.location.href = "&copy; Copyright 2017 <a href='http://stepintotech.org' target='_blank'>Step Into Tech</a> | All Rights Reserved. Image &copy; <a href='http://www.retronator.com/post/165088183163/pixelberry-pi-by-retronator-the-next-computer-in' target='_blank'>retronator</a> 2017.";
+            }
+        </script>
 	</body>
 </html>
