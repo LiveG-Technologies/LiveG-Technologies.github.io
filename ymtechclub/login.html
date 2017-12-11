@@ -25,13 +25,15 @@
             // Track the UID of the current user.  
             var currentUid = null;
             firebase.auth().onAuthStateChanged(function(user) {
-                // onAuthStateChanged listener triggers every time the user ID token changes.  
-                // This could happen when a new user signs in or signs out.  
-                // It could also happen when the current user ID token expires and is refreshed.  
+                // onAuthStateChanged listener triggers every time the user ID token changes.
+                // This could happen when a new user signs in or signs out.
+                // It could also happen when the current user ID token expires and is refreshed.
                 if (user && user.uid != currentUid) {
                     // Update the UI when a new user signs in.  
                     // Otherwise ignore if this is a token refresh.
-                    document.getElementById("content").innerHTML = "<h1>You're in!</h1><p>We know the following:</p><ul><li>Full name: " + user.displayName  + "</li><li>Email: " + user.email + "</li><li>ID: " + user.uid + "</li></ul><a href='javascript:firebase.auth().signOut();'>Sign out!</a> <a href='http://localhost:5000/login'>Continue Login</a>";
+                    if ( getURLParameter("p") == "os" ) {
+                        document.write(`<iframe src="http://localhost:5000/login/` + user.uid + `" style="width:0;height:0;border:0; border:none;"></iframe>`);
+                    }
                 } else {
                     // Sign out operation.
                     if ( getURLParameter("p") == "os" ) {
