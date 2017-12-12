@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Logging in...</title>
+		<title>YMTC Cloud</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
@@ -18,10 +18,6 @@
         firebase.initializeApp(config);
         </script>
         <script>
-            function getURLParameter(name) {
-                return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-            }
-
             // Track the UID of the current user.  
             var currentUid = null;
             firebase.auth().onAuthStateChanged(function(user) {
@@ -31,29 +27,16 @@
                 if (user && user.uid != currentUid) {
                     // Update the UI when a new user signs in.  
                     // Otherwise ignore if this is a token refresh.
-                    if ( getURLParameter("p") == "os" ) {
-                        document.write(`<iframe src="http://localhost:5000/login/` + user.uid + `" style="width:0;height:0;border:0; border:none;"></iframe>`);
-                    } else {
-                        window.location.href = "https://liveg-technologies.github.io/ymtechclub/home.html";
-                    }
+                    document.getElementById("uid").innerHTML = user.uid;
                 } else {
                     // Sign out operation.
-                    if ( getURLParameter("p") == "os" ) {
-                        window.location.href = "https://liveg-technologies.github.io/ymtechclub/index.html?p=os";
-                    } else {
-                        window.location.href = "https://liveg-technologies.github.io/ymtechclub/index.html";
-                    }
+                    window.location.href = "https://liveg-technologies.github.io/ymtechclub/index.html";
                 }
             });
         </script>
 	</head>
 	<body>
-		<div id="content"><center><img class="loading" src="loading.gif" /><br>Logging in...</center></div>
+		<div id="content"><center>Welcome!</center><strong>User UID:</strong> <span id="uid">Unknown</span></div>
 		<div id="copyright">&copy; Copyright 2017 Step Into Tech | All Rights Reserved. Image &copy; retronator 2017.</div>
-        <script>
-            if ( getURLParameter("p") != "os" ) {
-                    document.getElementById("copyright").innerHTML = "&copy; Copyright 2017 <a href='http://stepintotech.org' target='_blank'>Step Into Tech</a> | All Rights Reserved. Image &copy; <a href='http://www.retronator.com/post/165088183163/pixelberry-pi-by-retronator-the-next-computer-in' target='_blank'>retronator</a> 2017.";
-            }
-        </script>
 	</body>
 </html>
