@@ -88,13 +88,12 @@ button {
 		width: calc(100vw - 20px);
 		top: 0;
 		left: 0;
-		height: calc(100vh - 80px);
+		height: calc(100vh - 120px);
 		border-radius: 0;
 		padding: 10px;
 	}
 
 	#copyright {
-		z-index: 0;
 		text-align: center;
 		background-color: #c4c4c4;
 		width: calc(100vw - 20px);
