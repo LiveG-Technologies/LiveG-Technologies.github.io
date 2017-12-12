@@ -88,7 +88,7 @@ button {
 		width: calc(100vw - 20px);
 		top: 0;
 		left: 0;
-		height: calc(100vh - 80px);
+		height: calc(100vh - 160px);
 		border-radius: 0;
 		padding: 10px;
 	}
