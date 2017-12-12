@@ -88,7 +88,7 @@ button {
 		width: calc(100vw - 20px);
 		top: 0;
 		left: 0;
-		height: calc(100vh - 160px);
+		height: calc(100vh - 80px);
 		border-radius: 0;
 		padding: 10px;
 	}
@@ -96,5 +96,12 @@ button {
 	#copyright {
 		z-index: 0;
 		text-align: center;
+		background-color: #c4c4c4;
+		width: calc(100vw - 20px);
+		padding: 10px;
+		margin: 0;
+		left: 0;
+		right: 20px;
+		bottom: 0;
 	}
 }
