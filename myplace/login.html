@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MyPlace</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCKVdwuqMgjISzTFnBddbbUqoSeZ1wC6DE",
+                authDomain: "myplaceservers.firebaseapp.com",
+                databaseURL: "https://myplaceservers.firebaseio.com",
+                projectId: "myplaceservers",
+                storageBucket: "",
+                messagingSenderId: "940464425755"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+        <link href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript">
+            var uiConfig = {  
+            signInSuccessUrl: 'index.html',  
+            signInOptions: [  
+                // Specify providers you want to offer your users.  
+                firebase.auth.EmailAuthProvider.PROVIDER_ID  
+            ],  
+            // Terms of service url can be specified and will show up in the widget.  
+            tosUrl: 'index.html',
+            'accountChooserEnabled': false,
+            'credentialHelper': firebaseui.auth.CredentialHelper.NONE
+            };
+
+            // Initialize the FirebaseUI Widget using Firebase.  
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());  
+            // The start method will wait until the DOM is loaded.  
+            ui.start('#firebaseui-auth-container', uiConfig);
+        </script>
+        <style>
+            .mdl-shadow--2dp {
+                box-shadow: none;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div id="logoHolder">
+                <a class="hiddenLink" href="index.html">
+                    <img id="logo" src="logo.png" />
+                </a>
+            </div>
+            <div class="headerItem">
+                MyPlace
+            </div>
+            <div class="headerItem floatRight">
+                <button onclick="window.location.href = 'index.html';">Home</button>
+            </div>
+            <div class="headerItem floatRightAlt">
+                <a class="hiddenLink" href="menu.html">&#8801;</a>
+            </div>
+        </header>
+        <div id="content">
+            <div id="firebaseui-auth-container"></div>
+        </div>
+    </body>
+</html>

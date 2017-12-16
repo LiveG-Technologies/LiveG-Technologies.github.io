@@ -4,21 +4,61 @@
         <title>MyPlace</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCKVdwuqMgjISzTFnBddbbUqoSeZ1wC6DE",
+                authDomain: "myplaceservers.firebaseapp.com",
+                databaseURL: "https://myplaceservers.firebaseio.com",
+                projectId: "myplaceservers",
+                storageBucket: "",
+                messagingSenderId: "940464425755"
+            };
+        firebase.initializeApp(config);
+        </script>
     </head>
     <body>
         <header>
             <div id="logoHolder">
-                <a class="normalLink" href="index.html">
+                <a class="hiddenLink" href="index.html">
                     <img id="logo" src="logo.png" />
                 </a>
             </div>
             <div class="headerItem">
                 MyPlace
             </div>
+            <div class="headerItem floatRight" id="accountStatus">
+            </div>
+            <div class="headerItem floatRight" id="userInfo"></div>
+            <div class="headerItem floatRightAlt">
+                <a class="hiddenLink" href="menu.html">&#8801;</a>
+            </div>
         </header>
         <div id="content">
             <h1>Coming Soon!</h1>
             <p>MyPlace is where users will be able to upload their own sites to the internet - For free (with ads).</p>
         </div>
+        <script>
+            // Track the UID of the current user.  
+            var currentUid = null;
+            firebase.auth().onAuthStateChanged(function(user) {
+                // onAuthStateChanged listener triggers every time the user ID token changes.
+                // This could happen when a new user signs in or signs out.
+                // It could also happen when the current user ID token expires and is refreshed.
+                if (user && user.uid != currentUid) {
+                    // Update the UI when a new user signs in.  
+                    // Otherwise ignore if this is a token refresh.
+                    document.getElementById("userInfo").innerHTML = user.displayName;
+                    document.getElementById("accountStatus").innerHTML = `<button onclick="firebase.auth().signOut();" id="accountStatus">Sign Out</button>`;
+                } else {
+                    // Sign out operation.
+                    document.getElementById("userInfo").innerHTML = "";
+                    document.getElementById("accountStatus").innerHTML = `<button onclick="window.location.href = 'login.html';" id="accountStatus">Sign In/Up</button>`;
+                }
+            });
+        </script>
     </body>
 </html>
