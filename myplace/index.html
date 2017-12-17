@@ -37,10 +37,7 @@
                 <a class="hiddenLink" href="menu.html">&#8801;</a>
             </div>
         </header>
-        <div id="content">
-            <h1>Coming Soon!</h1>
-            <p>MyPlace is where users will be able to upload their own sites to the internet - For free (with ads).</p>
-        </div>
+        <div id="contentFill"></div>
         <script>
             // Track the UID of the current user.  
             var currentUid = null;
@@ -53,10 +50,24 @@
                     // Otherwise ignore if this is a token refresh.
                     document.getElementById("userInfo").innerHTML = user.displayName;
                     document.getElementById("accountStatus").innerHTML = `<button onclick="firebase.auth().signOut();" id="accountStatus">Sign Out</button>`;
+                    document.getElementById("contentFill").innerHTML = `
+                        <h1>Coming Soon!</h1>
+                        <p>MyPlace is where users will be able to upload their own one-page sites to the internet - For free. How come? Through our non-intrusive advertising techniques, we can keep hosting free and run our servers at the same time.</p>
+                    `;
                 } else {
                     // Sign out operation.
                     document.getElementById("userInfo").innerHTML = "";
                     document.getElementById("accountStatus").innerHTML = `<button onclick="window.location.href = 'login.html';" id="accountStatus">Sign In/Up</button>`;
+                    document.getElementById("contentFill").innerHTML = `
+                        <div class="halfItem">
+                            <h1>Coming Soon!</h1>
+                            <p>MyPlace is where users will be able to upload their own one-page sites to the internet - For free. How come? Through our non-intrusive advertising techniques, we can keep hosting free and run our servers at the same time.</p>
+                        </div>
+                        <div class="halfItem">
+                            <h1>Powered By LiveG.</h1>
+                            <p>Our website is powered by LiveG Technologies, at <a target="_blank" href="http://liveg.tech">liveg.tech</a>. Some of the money generated from this will go to them as they handle the operations.</p>
+                        </div>
+                    `;
                 }
             });
         </script>
