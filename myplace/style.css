@@ -44,6 +44,10 @@ a:hover {
     text-decoration: none;
 }
 
+.hiddenLink:hover {
+	text-decoration: none;
+}
+
 #content {
     position: relative;
     top: 20px;
