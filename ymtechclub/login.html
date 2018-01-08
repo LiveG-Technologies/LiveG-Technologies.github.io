@@ -33,7 +33,7 @@
                     // Update the UI when a new user signs in.  
                     // Otherwise ignore if this is a token refresh.
                     if ( getURLParameter("p") == "os" ) {
-                        document.write(`<iframe src="http://localhost:5000/login/` + user.uid + `" style="width:0;height:0;border:0; border:none;"></iframe>`);
+                        document.body.innerHTML = document.body.innerHTML + `<iframe src="http://localhost:5000/login/` + user.uid + `" style="width:0;height:0;border:0; border:none;"></iframe>`;
                     } else {
                         window.location.href = "https://liveg-technologies.github.io/ymtechclub/home.html";
                     }
