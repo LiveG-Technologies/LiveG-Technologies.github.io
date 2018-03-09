@@ -12,6 +12,27 @@ body {
     font-size: 10vh;
 }
 
+header {
+    position: absolute;
+    top: 20px;
+    font-size: 2vw;
+    left: calc(10vw - 10px);
+    text-align: left;
+}
+
+.headerPart {
+    font-size: 2vw;
+}
+
+button {
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 50px;
+    color: white;
+    background-color: #4286f4;
+    /*padding: 10px 20px 10px 20px;*/
+    border: none;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -22,13 +43,68 @@ textarea:focus, input:focus{
     outline: none;
 }
 
-#code {
-    width: 92vw;
-    font-size: 8vw;
+input {
     font-family: 'Open Sans', sans-serif;
-    text-align: center;
     background-color: rgb(100, 100, 100);
     color: white;
     border: none;
     border-radius: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#code {
+    width: 92vw;
+    font-size: 8vw;
+    text-align: center;
+}
+
+#createButton {
+    width: 20vw;
+}
+
+#username {
+    font-size: 2vw;
+    display: table-cell;
+    width: 50vw;
+    margin-left: 10vw;
+}
+
+.hM {
+        display: unset;
+    }
+
+    .hD {
+        display: none;
+    }
+
+@media (max-width: 600px) {
+    .hM {
+        display: none;
+    }
+
+    .hD {
+        display: unset;
+    }
+
+    header {
+        font-size: 5vw;
+    }
+
+    .headerPart {
+        font-size: 5vw;
+    }
+
+    #username {
+        font-size: 5vw;
+    }
+
+    #createButton {
+        width: 30vw;
+    }
+
+    #username {
+        width: 45vw;
+        margin-left: 5vw;
+    }
 }
