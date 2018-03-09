@@ -1,0 +1,34 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 20vh;
+    background-color: rgb(200, 200, 200);
+}
+
+#home {
+    text-align: center;
+}
+
+#name {
+    font-size: 10vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+#code {
+    width: 92vw;
+    font-size: 8vw;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    background-color: rgb(100, 100, 100);
+    color: white;
+    border: none;
+    border-radius: 50px;
+}

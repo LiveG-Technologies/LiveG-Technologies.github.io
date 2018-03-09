@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hey</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC0pKUlE4YHhs0UxaSDI9-51TMSzHpA-iw",
+            authDomain: "liveg-hey-chat.firebaseapp.com",
+            databaseURL: "https://liveg-hey-chat.firebaseio.com",
+            projectId: "liveg-hey-chat",
+            storageBucket: "liveg-hey-chat.appspot.com",
+            messagingSenderId: "475847272818"
+        };
+        firebase.initializeApp(config);
+        </script>
+    </head>
+    <body id="home">
+        <h1 id="name">Hey</h1>
+        <input type="number" placeholder="Enter Heycode" id="code"></input>
+    </body>
+</html>
