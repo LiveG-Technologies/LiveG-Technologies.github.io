@@ -10,3 +10,4 @@ function generateUsername() {
 }
 
 document.getElementById("username").value = generateUsername();
+document.getElementById("code").autofocus = true;
