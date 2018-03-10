@@ -58,7 +58,6 @@ if (window.location.href.split("/")[window.location.href.split("/").length - 1] 
 code = getURLParameter("code");
 
     document.getElementById("codeCorner").value = code;
-    document.getElementById("chatInput").autofocus = true;
 
     getColour(code);
 
@@ -74,8 +73,11 @@ code = getURLParameter("code");
     firebase.database().ref("/chats/" + code + "/messages").on("value", function(snapshot) {
         document.getElementById("chatArea").innerHTML = "";
 
+        var autofocus = false;
+
         snapshot.forEach(function(childSnapshot) {
             document.getElementById("chatInput").disabled = false;
+            if (!autofocus) { document.getElementById("chatInput").autofocus = true; autofocus = true; }
 			var childKey = childSnapshot.key;
             
             var username = childSnapshot.val().username;
