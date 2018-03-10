@@ -9,7 +9,8 @@ body {
 }
 
 #chat {
-    margin-top: 2vw;
+    text-align: center;
+    margin-top: 10vh;
 }
 
 #name {
@@ -63,7 +64,18 @@ input {
     text-align: center;
 }
 
+#chatInput {
+    width: calc(92vw - 30px);
+    font-size: 4vw;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
 #createButton {
+    width: 20vw;
+}
+
+#exitButton {
     width: 20vw;
 }
 
@@ -82,16 +94,26 @@ input {
     background-color: unset;
     color: black;
     text-align: right;
+    position: relative;
+    left: 10px;
 }
 
+#chatArea {
+    text-align: left;
+    height: 78vh;
+    overflow-y: auto;
+    font-size: 3vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
 
 .hM {
-        display: unset;
-    }
+    display: unset;
+}
 
-    .hD {
-        display: none;
-    }
+.hD {
+    display: none;
+}
 
 @media (max-width: 600px) {
     .hM {
@@ -124,5 +146,18 @@ input {
         font-size: 5vw;
         width: 45vw;
         margin-left: 5vw;
+    }
+
+    #chatInput {
+        font-size: 8vw;
+        width: calc(92vw - 10px);
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #chatArea {
+        font-size: 5vw;
+        padding-left: 3vw;
+        padding-right: 3vw;
     }
 }

@@ -25,10 +25,10 @@
     <body id="home">
         <header id="homebar">
             <button class="headerPart" id="createButton"><i class="fas fa-plus-circle"></i> Create</button>
-            <input placeholder="Username" oninput="javascript: usernameAltered = true; if (this.value.indexOf(' ') !== -1) this.value = this.value.slice(0, this.maxLength);" id="username"></input>
+            <input placeholder="Username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="javascript: usernameAltered = true; if (this.value.indexOf(' ') !== -1) this.value = this.value.slice(0, this.maxLength);" id="username"></input>
         </header>
         <h1 id="name">Hey</h1>
-        <input type="number" placeholder="Enter Heycode" maxlength="6" max="999999" oninput="javascript: if (this.value.length > this.maxLength) { this.value = this.value.slice(0, this.maxLength); } if (this.value.length > this.maxLength - 1) { getColour(this.value); } if (this.value.length <= this.maxLength - 1) { resetColour(); }" id="code"></input>
+        <input type="number" placeholder="Enter Heycode" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="6" max="999999" oninput="javascript: if (this.value.length > this.maxLength) { this.value = this.value.slice(0, this.maxLength); } if (this.value.length > this.maxLength - 1) { getColour(this.value); } if (this.value.length <= this.maxLength - 1) { resetColour(); }" id="code"></input>
     </body>
     <script src="script.js"></script>
 </html>

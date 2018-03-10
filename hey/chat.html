@@ -23,12 +23,14 @@
         </script>
     </head>
     <body id="chat">
-        <header id="homebar">
-            <button class="headerPart" id="createButton"><i class="fas fa-times-circle"></i> Exit Chat</button>
+        <header id="chatbar">
+            <button class="headerPart" id="exitButton"><i class="fas fa-times-circle"></i> Exit</button>
             <input id="codeCorner" disabled="true" value="000000"></input>
         </header>
-        <h1 id="name">Hey</h1>
-        <input type="number" placeholder="Enter Heycode" maxlength="6" max="999999" oninput="javascript: if (this.value.length > this.maxLength) { this.value = this.value.slice(0, this.maxLength); } if (this.value.length > this.maxLength - 1) { getColour(this.value); } if (this.value.length <= this.maxLength - 1) { resetColour(); }" id="code"></input>
+        <div id="chatArea">
+            <span class="chatItem"><strong>User</strong>: Hello!</span>
+        </div>
+        <input placeholder="Chat here" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" id="chatInput"></input>
     </body>
     <script src="script.js"></script>
 </html>

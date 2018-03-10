@@ -3,6 +3,10 @@ var adjectives = ["Attractive", "Beautiful", "Chubby", "Clean", "Dazzling", "Dra
 
 var usernameAltered = false;
 
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+}
+
 function generateUsername() {
     var animal = animals[Math.floor(Math.random() * animals.length)];
     var adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
@@ -25,5 +29,22 @@ function resetColour() {
     document.getElementsByTagName("body")[0].style.backgroundColor = "rgb(200, 200, 200)";
 }
 
-document.getElementById("username").value = generateUsername();
-document.getElementById("code").autofocus = true;
+if (window.location.href.split("/")[window.location.href.split("/").length - 1] == "index.html") {
+    document.getElementById("username").value = generateUsername();
+    document.getElementById("code").autofocus = true;
+} else {
+    if (getURLParameter("code") == null) {
+        window.location.href = "index.html"
+    }
+
+    document.getElementById("codeCorner").value = getURLParameter("code");
+    document.getElementById("chatInput").autofocus = true;
+
+    var input = document.getElementById("chatInput");
+    input.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode == 13) {
+            document.getElementById("chatInput").value = "";
+        }
+    });
+}
