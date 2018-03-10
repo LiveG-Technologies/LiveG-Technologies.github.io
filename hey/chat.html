@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hey</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css?random=@Environment.TickCount">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC0pKUlE4YHhs0UxaSDI9-51TMSzHpA-iw",
+            authDomain: "liveg-hey-chat.firebaseapp.com",
+            databaseURL: "https://liveg-hey-chat.firebaseio.com",
+            projectId: "liveg-hey-chat",
+            storageBucket: "liveg-hey-chat.appspot.com",
+            messagingSenderId: "475847272818"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+        </script>
+    </head>
+    <body id="chat">
+        <header id="homebar">
+            <button class="headerPart" id="createButton"><i class="fas fa-times-circle"></i> Exit Chat</button>
+            <input id="codeCorner" disabled="true" value="000000"></input>
+        </header>
+        <h1 id="name">Hey</h1>
+        <input type="number" placeholder="Enter Heycode" maxlength="6" max="999999" oninput="javascript: if (this.value.length > this.maxLength) { this.value = this.value.slice(0, this.maxLength); } if (this.value.length > this.maxLength - 1) { getColour(this.value); } if (this.value.length <= this.maxLength - 1) { resetColour(); }" id="code"></input>
+    </body>
+    <script src="script.js"></script>
+</html>
