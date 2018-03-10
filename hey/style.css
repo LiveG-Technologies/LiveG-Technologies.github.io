@@ -39,7 +39,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-textarea:focus, input:focus{
+textarea:focus, input:focus, button:focus {
     outline: none;
 }
 
