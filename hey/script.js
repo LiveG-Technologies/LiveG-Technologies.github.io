@@ -30,7 +30,7 @@ function getColour(code) {
 function sendChat(username, content) {
     firebase.database().ref("/chats/" + code + "/messages").push().set({
         username: username,
-        content: content
+        content: content.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/&/g, "&amp;")
     });
 }
 
