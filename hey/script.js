@@ -2,6 +2,7 @@ var animals = ["Aardvark", "Aardwolf", "Albatross", "Alligator", "Alpaca", "Anac
 var adjectives = ["Attractive", "Beautiful", "Chubby", "Clean", "Dazzling", "Drab", "Elegant", "Fancy", "Fit", "Flabby", "Glamorous", "Gorgeous", "Handsome", "Long", "Magnificent", "Muscular", "Plain", "Plump", "Quaint", "Scruffy", "Shapely", "Short", "Skinny", "Stocky", "Ugly", "Unkempt", "Unsightly"];
 
 var username = "";
+var code = "";
 var usernameAltered = false;
 
 function getURLParameter(name) {
@@ -26,6 +27,13 @@ function getColour(code) {
     });    
 }
 
+function sendChat(username, content) {
+    firebase.database().ref("/chats/" + code + "/messages").push().set({
+        username: username,
+        content: content
+    });
+}
+
 function resetColour() {
     document.getElementsByTagName("body")[0].style.backgroundColor = "rgb(200, 200, 200)";
 }
@@ -36,18 +44,37 @@ if (window.location.href.split("/")[window.location.href.split("/").length - 1] 
 } else {
     if (getURLParameter("code") == null) { window.location.href = "index.html" }
 
-    if (getURLParameter("username") == null) { username = generateUsername() } else (username = getURLParameter("username"))
+    username = getURLParameter("username")
+    if (username == null) { username = generateUsername() }
 
-    document.getElementById("codeCorner").value = getURLParameter("code");
+code = getURLParameter("code");
+
+    document.getElementById("codeCorner").value = code;
     document.getElementById("chatInput").autofocus = true;
 
-    getColour(getURLParameter("code"));
+    getColour(code);
+
+    
 
     var input = document.getElementById("chatInput");
     input.addEventListener("keyup", function(event) {
         event.preventDefault();
         if (event.keyCode == 13) {
+            sendChat(username, document.getElementById("chatInput").value);
             document.getElementById("chatInput").value = "";
         }
+    });
+
+    firebase.database().ref("/chats/" + code + "/messages").on("value", function(snapshot) {
+        document.getElementById("chatArea").innerHTML = "";
+
+        snapshot.forEach(function(childSnapshot) {
+			var childKey = childSnapshot.key;
+            
+            var username = childSnapshot.val().username;
+            var content = childSnapshot.val().content;
+
+            document.getElementById("chatArea").innerHTML = document.getElementById("chatArea").innerHTML + `<span class="chatItem"><strong>` + username + `</strong>: ` + content + `</span><br>`;
+        });
     });
 }
