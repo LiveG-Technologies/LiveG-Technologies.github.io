@@ -101,7 +101,7 @@ input {
 #chatArea {
     text-align: left;
     height: 76vh;
-    overflow-y: auto;
+    overflow-y: hidden;
     font-size: 3vw;
     padding-left: 5vw;
     padding-right: 5vw;
