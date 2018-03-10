@@ -46,7 +46,7 @@ if (window.location.href.split("/")[window.location.href.split("/").length - 1] 
     input.addEventListener("keyup", function(event) {
         event.preventDefault();
         if (event.keyCode == 13) {
-            window.location.href = "chat.html?code=" + document.getElementById("code").value + "&username=" + document.getElementById("username").value
+            window.location.href = "chat.html?code=" + document.getElementById("code").value + "&username=" + document.getElementById("username").value;
         }
     });
 } else {
@@ -83,4 +83,9 @@ code = getURLParameter("code");
             document.getElementById("chatArea").innerHTML = document.getElementById("chatArea").innerHTML + `<span class="chatItem"><strong>` + username + `</strong>: ` + content + `</span><br>`;
         });
     });
+
+    window.setInterval(function() {
+        var pos = document.getElementById("chatArea");
+        pos.scrollTop = pos.scrollHeight;
+    }, 100);
 }
