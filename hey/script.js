@@ -41,6 +41,8 @@ if (window.location.href.split("/")[window.location.href.split("/").length - 1] 
     document.getElementById("codeCorner").value = getURLParameter("code");
     document.getElementById("chatInput").autofocus = true;
 
+    getColour(getURLParameter("code"));
+
     var input = document.getElementById("chatInput");
     input.addEventListener("keyup", function(event) {
         event.preventDefault();
