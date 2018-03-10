@@ -41,6 +41,14 @@ function resetColour() {
 if (window.location.href.split("/")[window.location.href.split("/").length - 1] == "index.html") {
     document.getElementById("username").value = generateUsername();
     document.getElementById("code").autofocus = true;
+
+    var input = document.getElementById("code");
+    input.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode == 13) {
+            window.location.href = "chat.html?code=" + document.getElementById("code").value + "&username=" + document.getElementById("username").value
+        }
+    });
 } else {
     if (getURLParameter("code") == null) { window.location.href = "index.html" }
 
@@ -53,8 +61,6 @@ code = getURLParameter("code");
     document.getElementById("chatInput").autofocus = true;
 
     getColour(code);
-
-    
 
     var input = document.getElementById("chatInput");
     input.addEventListener("keyup", function(event) {
