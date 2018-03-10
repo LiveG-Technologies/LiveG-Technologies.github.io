@@ -75,6 +75,7 @@ code = getURLParameter("code");
         document.getElementById("chatArea").innerHTML = "";
 
         snapshot.forEach(function(childSnapshot) {
+            document.getElementById("chatInput").disabled = false;
 			var childKey = childSnapshot.key;
             
             var username = childSnapshot.val().username;
