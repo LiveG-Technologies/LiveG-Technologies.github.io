@@ -98,7 +98,7 @@ if (window.location.href.split("/")[window.location.href.split("/").length - 1] 
     username = getURLParameter("username")
     if (username == null) { username = generateUsername() }
 
-code = getURLParameter("code");
+    code = getURLParameter("code");
 
     document.getElementById("codeCorner").value = code;
 
