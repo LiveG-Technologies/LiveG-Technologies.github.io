@@ -29,6 +29,7 @@
         </header>
         <h1 id="name">Hey</h1>
         <input type="number" placeholder="Enter Heycode" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="6" max="999999" oninput="javascript: if (this.value.length > this.maxLength) { this.value = this.value.slice(0, this.maxLength); } if (this.value.length > this.maxLength - 1) { getColour(this.value); } if (this.value.length <= this.maxLength - 1) { resetColour(); }" id="code"></input>
+        <div id="alert">This is a message. If it appears, something is wrong.<br class="dbr"><button onclick="hideAlert();" class="alertButton"><i class="fas fa-check"></i> OK</button></div>
     </body>
     <script src="script.js"></script>
 </html>

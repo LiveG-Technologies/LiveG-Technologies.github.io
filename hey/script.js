@@ -38,6 +38,15 @@ function resetColour() {
     document.getElementsByTagName("body")[0].style.backgroundColor = "rgb(200, 200, 200)";
 }
 
+function hideAlert() {
+    document.getElementById("alert").style.display = "none";
+}
+
+function alertOK(content, action = "") {
+    document.getElementById("alert").innerHTML = content + `<br class="dbr"><button onclick="hideAlert(); ` + action.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-check"></i> OK</button>`
+    document.getElementById("alert").style.display = "unset";
+}
+
 if (window.location.href.split("/")[window.location.href.split("/").length - 1] == "index.html") {
     document.getElementById("username").value = generateUsername();
     document.getElementById("code").autofocus = true;
@@ -45,8 +54,15 @@ if (window.location.href.split("/")[window.location.href.split("/").length - 1] 
     var input = document.getElementById("code");
     input.addEventListener("keyup", function(event) {
         event.preventDefault();
-        if (event.keyCode == 13) {
-            window.location.href = "chat.html?code=" + document.getElementById("code").value + "&username=" + document.getElementById("username").value;
+        if (event.keyCode == 13 && input.value.length == 6) {
+            firebase.database().ref("/chats/" + input.value + "/colour").once("value").then(function(snapshot) {
+                var exists = (snapshot.val() != null);
+                if (exists) {
+                    window.location.href = "chat.html?code=" + document.getElementById("code").value + "&username=" + document.getElementById("username").value;
+                } else {
+                    alertOK("That chatroom doesn't exist! You can always create a chatroom by pressing the 'Create' button.", `document.getElementById("code").value = "";`);
+                }
+            });
         }
     });
 } else {

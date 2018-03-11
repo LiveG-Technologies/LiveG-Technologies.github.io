@@ -58,10 +58,35 @@ input {
     padding-right: 10px;
 }
 
+.dbr {
+    display: block;
+    margin: 20px 0;
+    line-height: 42px;
+    content: " ";
+}
+
 #code {
     width: 92vw;
     font-size: 8vw;
     text-align: center;
+}
+
+#alert {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: calc(50vw - 20vw - 30px);
+    width: 40vw;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: white;
+    font-size: 2vw;
+}
+
+.alertButton {
+    font-size: 2vw;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #chatInput {
@@ -160,5 +185,15 @@ input {
         font-size: 5vw;
         padding-left: 3vw;
         padding-right: 3vw;
+    }
+
+    #alert {
+        left: calc(10vw - 30px);
+        width: 80vw;
+        font-size: 5vw;
+    }
+
+    .alertButton {
+        font-size: 5vw;
     }
 }
