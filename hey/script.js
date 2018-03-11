@@ -74,6 +74,11 @@ function alertOK(content, action = "") {
     document.getElementById("alert").style.display = "unset";
 }
 
+function alertYN(content, yes = "", no = "") {
+    document.getElementById("alert").innerHTML = content + `<br class="dbr"><button onclick="hideAlert(); ` + no.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-times"></i> No</button> <button onclick="hideAlert(); ` + yes.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-check"></i> Yes</button>`
+    document.getElementById("alert").style.display = "unset";
+}
+
 if (window.location.href.split("/")[window.location.href.split("/").length - 1] == "index.html") {
     document.getElementById("username").value = generateUsername();
     document.getElementById("code").autofocus = true;
@@ -85,7 +90,11 @@ if (window.location.href.split("/")[window.location.href.split("/").length - 1] 
             firebase.database().ref("/chats/" + input.value + "/colour").once("value").then(function(snapshot) {
                 var exists = (snapshot.val() != null);
                 if (exists) {
-                    window.location.href = "chat.html?code=" + document.getElementById("code").value + "&username=" + document.getElementById("username").value;
+                    if (usernameAltered) {
+                        window.location.href = "chat.html?code=" + document.getElementById("code").value + "&username=" + document.getElementById("username").value;
+                    } else {
+                        alertYN("You haven't changed your username. Do you still want to be <strong>" + document.getElementById("username").value + "</strong>?", `window.location.href = 'chat.html?code=' + document.getElementById('code').value + '&username=' + document.getElementById('username').value;`);
+                    }
                 } else {
                     alertOK("That chatroom doesn't exist! You can always create a chatroom by pressing the 'Create' button.", `document.getElementById("code").value = "";`);
                 }
