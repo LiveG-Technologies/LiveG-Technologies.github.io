@@ -25,12 +25,13 @@
     <body id="chat">
         <header id="chatbar">
             <button onclick="window.location.href = 'index.html';" class="headerPart" id="exitButton"><i class="fas fa-times-circle"></i> Exit</button>
-            <input id="codeCorner" disabled="true" value="000000"></input>
+            <span onclick="alertOK('Your Heycode is: <h1>' + code + '</h1>Share it with your friends!');"><input id="codeCorner" disabled="true" value="000000"></input></span>
         </header>
         <div id="chatArea">
             <span class="chatItem"><center><h1>Loading chat...</h1>Please wait!</center></span>
         </div>
         <input placeholder="Chat here" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" disabled="true" id="chatInput"></input>
+        <div id="alert">If you see this message, there is a bug. Please contact us.<br class="dbr"><button onclick="hideAlert();" class="alertButton"><i class="fas fa-check"></i> OK</button></div>
     </body>
     <script src="script.js"></script>
 </html>

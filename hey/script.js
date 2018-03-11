@@ -61,7 +61,7 @@ function createChat(colour) {
 
         firebase.database().ref("/nextchat").set(nextNextchat);
 
-        window.location.href = "chat.html?code=" + nextchat + "&username=" + document.getElementById("username").value;
+        alertOK("Your Heycode is: <h1>" + nextchat + "</h1>Share it with your friends!", "window.location.href = 'chat.html?code=" + nextchat + "&username=' + document.getElementById('username').value;");
     });
 }
 
@@ -77,6 +77,14 @@ function alertOK(content, action = "") {
 function alertYN(content, yes = "", no = "") {
     document.getElementById("alert").innerHTML = content + `<br class="dbr"><button onclick="hideAlert(); ` + no.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-times"></i> No</button> <button onclick="hideAlert(); ` + yes.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-check"></i> Yes</button>`;
     document.getElementById("alert").style.display = "unset";
+}
+
+function aboutCreate() {
+    if (usernameAltered) {
+        alertColour();
+    } else {
+        alertYN("You haven't changed your username. Do you still want to be <strong>" + document.getElementById("username").value + "</strong>?", `alertColour();`);
+    }
 }
 
 function alertColour() {
