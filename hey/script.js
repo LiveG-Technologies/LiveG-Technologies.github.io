@@ -46,12 +46,12 @@ function resetColour() {
     document.getElementsByTagName("body")[0].style.backgroundColor = "rgb(200, 200, 200)";
 }
 
-function createChat() {
+function createChat(colour) {
     firebase.database().ref("/nextchat").once("value").then(function(snapshot) {
         var nextchat = snapshot.val();
         
         firebase.database().ref("/chats/" + nextchat).set({
-            colour: colours[Math.floor(Math.random() * colours.length)],
+            colour: colour,
             messages: null
         });
 
@@ -70,12 +70,17 @@ function hideAlert() {
 }
 
 function alertOK(content, action = "") {
-    document.getElementById("alert").innerHTML = content + `<br class="dbr"><button onclick="hideAlert(); ` + action.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-check"></i> OK</button>`
+    document.getElementById("alert").innerHTML = content + `<br class="dbr"><button onclick="hideAlert(); ` + action.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-check"></i> OK</button>`;
     document.getElementById("alert").style.display = "unset";
 }
 
 function alertYN(content, yes = "", no = "") {
-    document.getElementById("alert").innerHTML = content + `<br class="dbr"><button onclick="hideAlert(); ` + no.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-times"></i> No</button> <button onclick="hideAlert(); ` + yes.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-check"></i> Yes</button>`
+    document.getElementById("alert").innerHTML = content + `<br class="dbr"><button onclick="hideAlert(); ` + no.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-times"></i> No</button> <button onclick="hideAlert(); ` + yes.replace(/"/g, "`") + `" class="alertButton"><i class="fas fa-check"></i> Yes</button>`;
+    document.getElementById("alert").style.display = "unset";
+}
+
+function alertColour() {
+    document.getElementById("alert").innerHTML = `Pick a colour for your chatroom.<br class="dbr"><button style='background-color: rgb(255, 100, 100); color: black;' onclick="hideAlert(); createChat('red')" class="alertButton">Red</button> <button style='background-color: rgb(100, 255, 100); color: black;' onclick="hideAlert(); createChat('green')" class="alertButton">Green</button> <button style='background-color: rgb(100, 100, 255); color: black;' onclick="hideAlert(); createChat('blue')" class="alertButton">Blue</button> <button style='background-color: rgb(255, 255, 100); color: black;' onclick="hideAlert(); createChat('yellow')" class="alertButton">Yellow</button>`;
     document.getElementById("alert").style.display = "unset";
 }
 
