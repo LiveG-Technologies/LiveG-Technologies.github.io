@@ -29,6 +29,11 @@ header {
     font-size: 2vw;
 }
 
+#bottom {
+    position: absolute;
+    bottom: 10px;
+}
+
 button {
     font-family: 'Open Sans', sans-serif;
     border-radius: 50px;
@@ -36,6 +41,15 @@ button {
     background-color: #4286f4;
     /*padding: 10px 20px 10px 20px;*/
     border: none;
+}
+
+a {
+    color: black;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: rgb(100, 100, 100);
 }
 
 input::-webkit-outer-spin-button,
