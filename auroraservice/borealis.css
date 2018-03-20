@@ -29,6 +29,10 @@ button.secondary {
     background-color: #3cbde3;
 }
 
+button.bad {
+    background-color: #ed370e;
+}
+
 button:hover {
     opacity: 0.8;
 }

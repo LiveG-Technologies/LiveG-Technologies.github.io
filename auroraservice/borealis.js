@@ -8,26 +8,29 @@ function iframed() {
     }
 }
 
-function checkFields() {
+function checkFields(login = true) {
     if (document.getElementById("user").value != "" && document.getElementById("pass").value != "") {
-        return True;
+        return true;
     } else {
         document.getElementById("error").innerHTML = "You have not filled out all of the required fields.";
-        return False;
+        return false;
     }
 }
 
 function login() {
-    checkFields();
+    if (checkFields(true)) {
+        localStorage.setItem("username", document.getElementById("user").value);
+    }
 }
 
 function signup() {
-    checkFields();
+    checkFields(false);
 }
 
 function change() {
     if (typeof(Storage) !== "undefined") {
         var user = localStorage.getItem("username");
+        var pass = localStorage.getItem("password");
 
         if (user == null) {
             document.getElementById("login").style.display = "unset";
@@ -42,7 +45,3 @@ function change() {
 }
 
 change();
-
-if (screen.availWidth <= 600 && !iframed()) {
-    window.open(window.location.href, "window", "width = 800, height = 800");
-}
