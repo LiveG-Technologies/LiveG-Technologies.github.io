@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login to Aurora Borealis</title>
+        <link rel="icon" href="favicon.png">
+        <link rel="stylesheet" type="text/css" href="borealis.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    </head>
+    <body>
+        <div id="login">
+            <h1>Login to Aurora Borealis.</h1>
+            <h2>Your gateway to all things Aurora.</h2>
+            <input placeholder="Username" id="user"></input><br>
+            <input type="password" placeholder="Password" id="pass"></input><br>
+            <button onclick="login();">Login</button><button class="secondary" onclick="signup();">Sign Up</button><br>
+            <p id="error"></p>
+        </div>
+        <div id="logout">
+            <h1>Hello, user!</h1>
+            <h2>You can continue your Aurora experience or logout.</h2>
+        </div>
+        <div id="notsupported">
+            <h1>Sorry! JS not supported.</h1>
+            <h2>JavaScript is not supported on this device. If you've turned it off, please turn it on!</h2>
+        </div>
+    </body>
+    <script type="text/javascript" src="borealis.js"></script>
+</html>

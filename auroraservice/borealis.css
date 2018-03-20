@@ -1,0 +1,52 @@
+body {
+    font-family: 'Montserrat', 'Open Sans', 'Roboto', sans-serif;
+    text-align: center;
+}
+
+input {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #cccccc;
+    box-sizing: border-box;
+    font-family: 'Montserrat', 'Open Sans', 'Roboto', sans-serif;
+    outline: 0;
+}
+
+button {
+    background-color: #8dcb68;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 10px;
+    border: none;
+    width: calc(25% - 10px);
+    font-family: 'Montserrat', 'Open Sans', 'Roboto', sans-serif;
+    outline: none;
+}
+
+button.secondary {
+    background-color: #3cbde3;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#error {
+    color: #ed370e;
+}
+
+#login {
+    display: none;
+}
+
+#logout {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    input {
+        width: 80%;
+    }
+}
