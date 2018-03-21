@@ -53,4 +53,9 @@ button:hover {
     input {
         width: 80%;
     }
+
+    button {
+        width: 80%;
+        margin: 8px 5px;
+    }
 }
