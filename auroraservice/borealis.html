@@ -6,12 +6,26 @@
         <link rel="stylesheet" type="text/css" href="borealis.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA_SBi5bWlglxReIf1VJcX7ts71uKX8pIw",
+            authDomain: "aurora-borealis-account.firebaseapp.com",
+            databaseURL: "https://aurora-borealis-account.firebaseio.com",
+            projectId: "aurora-borealis-account",
+            storageBucket: "aurora-borealis-account.appspot.com",
+            messagingSenderId: "360682466514"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+        </script>
     </head>
     <body>
         <div id="login">
             <h1>Login to Aurora Borealis.</h1>
             <h2>Your gateway to all things Aurora.</h2>
-            <input placeholder="Username" id="user"></input><br>
+            <input placeholder="E-mail" id="user"></input><br>
             <input type="password" placeholder="Password" id="pass"></input><br>
             <button onclick="login();">Login</button><button class="secondary" onclick="signup();">Sign Up</button><br>
             <p id="error"></p>
@@ -19,7 +33,7 @@
         <div id="logout">
             <h1>Hello, user!</h1>
             <h2>You can continue your Aurora experience or logout.</h2>
-            <button class="bad" onclick="login();">Logout</button><button class="secondary" onclick="signup();">Settings</button>
+            <button class="bad" onclick="logout();">Logout</button><button class="secondary" onclick="signup();">Settings</button>
         </div>
         <div id="notsupported">
             <h1>Sorry! JS not supported.</h1>
