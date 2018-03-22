@@ -11,7 +11,6 @@ function change(user) {
             document.getElementById("login").style.display = "unset";
             document.getElementById("logout").style.display = "none";
         }
-
     } else {
         alert("Sorry! You will not be able to use your Borealis account on this device as it does not support HTML5 web storage.");
     }
