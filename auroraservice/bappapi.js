@@ -72,7 +72,7 @@ var app = {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
         }
     },
-    readListOnce: function(tag, callback1, callbackAfter) {
+    readListOnce: function(tag, callbackAfter, callback1) {
         if (setup.loggedIn != false && setup.storedAs != null) {
             firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).once("value").then(function(snapshot) {
                 callback1(snapshot.val());
@@ -84,7 +84,7 @@ var app = {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
         }
     },
-    readListOnChange: function(tag, callback1, callbackAfter) {
+    readListOnChange: function(tag, callbackAfter, callback1) {
         if (setup.loggedIn != false && setup.storedAs != null) {
             firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).on("value", function(snapshot) {
                 callback1(snapshot.val());
