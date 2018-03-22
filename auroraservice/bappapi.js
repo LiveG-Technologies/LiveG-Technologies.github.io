@@ -47,13 +47,11 @@ var app = {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
         }
     },
-    read: function(tag) {
+    readOnce: function(tag, command) {
         if (setup.loggedIn != false && setup.storedAs != null) {
-            var data = null;
             firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).once("value").then(function(snapshot) {
-                data = snapshot.val();
+                command(snapshot.val());
             });
-            return data;
         } else if (setup.storedAs == null) {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
         }
