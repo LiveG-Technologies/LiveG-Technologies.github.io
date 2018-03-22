@@ -1,4 +1,4 @@
-// Initialize Firebase
+// Initialise Firebase
 var config = {
     apiKey: "AIzaSyA_SBi5bWlglxReIf1VJcX7ts71uKX8pIw",
     authDomain: "aurora-borealis-account.firebaseapp.com",
@@ -36,13 +36,24 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 var app = {
-    load: function(knownAs, storedAs) {
-        setup.appName = knownAs;
-        setup.appDatabase = storedAs;
+    load: function(appName, storedAs) {
+        setup.appName = appName;
+        setup.storedAs = storedAs;
     },
     write: function(tag, data) {
         if (setup.loggedIn != false && setup.storedAs != null) {
-            firebase.database().ref("users/" + setup.userUid + "/" + setup.appDatabase + "/" + tag).set(data);
+            firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).set(data);
+        } else if (setup.storedAs == null) {
+            throw("App not properly initialised. Please fix this by using the `app.load` command.")
+        }
+    },
+    read: function(tag) {
+        if (setup.loggedIn != false && setup.storedAs != null) {
+            return firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).once("value").then(function(snapshot) {
+                return snapshot.val()
+            });
+        } else if (setup.storedAs == null) {
+            throw("App not properly initialised. Please fix this by using the `app.load` command.")
         }
     }
 }
