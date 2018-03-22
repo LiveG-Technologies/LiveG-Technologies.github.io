@@ -41,7 +41,7 @@ var app = {
         setup.appDatabase = storedAs;
     },
     write: function(tag, data) {
-        if (setup.loggedIn != false || storedAs != null) {
+        if (setup.loggedIn != false && setup.storedAs != null) {
             firebase.database().ref("users/" + setup.userUid + "/" + setup.appDatabase + "/" + tag).set(data);
         }
     }
