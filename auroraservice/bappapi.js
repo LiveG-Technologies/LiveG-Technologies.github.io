@@ -49,8 +49,9 @@ var app = {
     },
     read: function(tag) {
         if (setup.loggedIn != false && setup.storedAs != null) {
-            return firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).once("value").then(function(snapshot) {
-                return snapshot.val()
+            var data = null;
+            firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).once("value").then(function(snapshot) {
+                data = snapshot.val();
             });
         } else if (setup.storedAs == null) {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
