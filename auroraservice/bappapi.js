@@ -47,6 +47,13 @@ var app = {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
         }
     },
+    writeItem: function(JSON) {
+        if (setup.loggedIn != false && setup.storedAs != null) {
+            firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs).push().set(JSON);
+        } else if (setup.storedAs == null) {
+            throw("App not properly initialised. Please fix this by using the `app.load` command.")
+        }
+    },
     readOnce: function(tag, callback) {
         if (setup.loggedIn != false && setup.storedAs != null) {
             firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).once("value").then(function(snapshot) {
@@ -60,6 +67,30 @@ var app = {
         if (setup.loggedIn != false && setup.storedAs != null) {
             firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).on("value", function(snapshot) {
                 callback(snapshot.val());
+            });
+        } else if (setup.storedAs == null) {
+            throw("App not properly initialised. Please fix this by using the `app.load` command.")
+        }
+    },
+    readListOnce: function(tag, callback1, callbackAfter) {
+        if (setup.loggedIn != false && setup.storedAs != null) {
+            firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).once("value").then(function(snapshot) {
+                callback1(snapshot.val());
+                snapshot.forEach(function(childSnapshot) {
+                    callbackAfter(childSnapshot.val(), childSnapshot.key);
+                });
+            });
+        } else if (setup.storedAs == null) {
+            throw("App not properly initialised. Please fix this by using the `app.load` command.")
+        }
+    },
+    readListOnChange: function(tag, callback1, callbackAfter) {
+        if (setup.loggedIn != false && setup.storedAs != null) {
+            firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).on("value", function(snapshot) {
+                callback1(snapshot.val());
+                snapshot.forEach(function(childSnapshot) {
+                    callbackAfter(childSnapshot.val(), childSnapshot.key);
+                });
             });
         } else if (setup.storedAs == null) {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
