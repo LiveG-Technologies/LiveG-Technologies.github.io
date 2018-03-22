@@ -47,10 +47,19 @@ var app = {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
         }
     },
-    readOnce: function(tag, command) {
+    readOnce: function(tag, callback) {
         if (setup.loggedIn != false && setup.storedAs != null) {
             firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).once("value").then(function(snapshot) {
-                command(snapshot.val());
+                callback(snapshot.val());
+            });
+        } else if (setup.storedAs == null) {
+            throw("App not properly initialised. Please fix this by using the `app.load` command.")
+        }
+    },
+    readOnChange: function(tag, callback) {
+        if (setup.loggedIn != false && setup.storedAs != null) {
+            firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).on("value", function(snapshot) {
+                callback(snapshot.val());
             });
         } else if (setup.storedAs == null) {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
