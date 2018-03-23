@@ -40,6 +40,18 @@ var app = {
         setup.appName = appName;
         setup.storedAs = storedAs;
     },
+    onLoginChange: function (callback) {
+        firebase.auth().onAuthStateChanged(function(user) {
+            // Checks if user auth state has changed.
+            if (user && user.uid != currentUid) {
+                // Sign in operation.
+                callback(true);
+            } else {
+                // Sign out operation.
+                callback(false);
+            }
+        });
+    },
     write: function(tag, data) {
         if (setup.loggedIn != false && setup.storedAs != null) {
             firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).set(data);

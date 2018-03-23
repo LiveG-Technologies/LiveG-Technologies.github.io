@@ -13,10 +13,12 @@
 	<script>
 		app.load("Webcount", "webcount");
 
-        if (setup.loggedIn == true) {
-
-        } else {
-            document.getElementById("header").innerHTML = "You aren't logged in. Please log in on the 'Account' page.";
-        }
+        app.onLoginChange(function(loggedIn) {
+            if (setup.loggedIn == true) {
+                document.getElementById("header").innerHTML = "";
+            } else {
+                document.getElementById("header").innerHTML = "You aren't logged in. Please log in on the 'Account' page.";
+            }
+        });
 	</script>
 </html>
