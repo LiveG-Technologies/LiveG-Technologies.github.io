@@ -52,3 +52,12 @@ function logout() {
         document.getElementById("error").innerHTML = "Oops! Something went wrong on our side. Try again soon!";
     });
 }
+
+var input = document.getElementById("pass");
+
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        login();
+    }
+});
