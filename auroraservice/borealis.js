@@ -78,6 +78,12 @@ function logout() {
     });
 }
 
+function reset() {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("signup").style.display = "none";
+    document.getElementById("logout").style.display = "unset";
+}
+
 var input = document.getElementById("pass");
 
 input.addEventListener("keyup", function(event) {
