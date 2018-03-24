@@ -1,5 +1,40 @@
 document.getElementById("notsupported").style.display = "none";
 
+var botMined = 0;
+
+function pbMove(name, to = 100, on100 = function() {}) {
+    var elem = document.getElementById(name);   
+    var width = Number(document.getElementById(name).style.width.replace(/%/g, ""));
+    function frame() {
+        if (width >= to || width >= 100) {
+            clearInterval(id);
+            if (width >= 100) { elem.style.backgroundColor = "#8dcb68"; on100(); }
+        } else {
+            width++;
+            elem.style.width = width + '%';
+        }
+    }
+    var id = setInterval(frame, 10);
+}
+
+function advance() {
+    botMined += 10;
+    if (botMined < 100) {
+        pbMove("pb", botMined);
+    }
+}
+
+function testRobot() {
+    document.getElementById("pend").innerHTML = "<iframe id='pendCheck' src='https://liveg-technologies.github.io/auroraservice/bbotdone.html'></iframe>";
+    setInterval(function() {
+        if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
+            pbMove("pb", 100, function() {
+                document.getElementById("pbLabel").innerHTML = "You're not a robot!";
+            })
+        }
+    });
+}
+
 function change(user) {
     if (typeof(Storage) !== "undefined") {
         if (user && user.uid != currentUid) {
@@ -58,6 +93,7 @@ function signupBefore() {
         document.getElementById("signup").style.display = "unset";
         document.getElementById("logout").style.display = "none";
     }
+    setInterval(advance, 2000);
 }
 
 function signup() {

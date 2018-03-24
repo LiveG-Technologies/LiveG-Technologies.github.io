@@ -35,6 +35,10 @@
             <h1>Sign up for Aurora Borealis.</h1>
             <h2>Your gateway to all things Aurora.</h2>
             <form autocomplete="off"><input placeholder="Username" id="name" autocomplete="off"></input></form><br>
+            <div class="progressBar">
+                <div class="progressInside" id="pb"></div>
+                <div class="progressLabel" id="pbLabel">Checking for roboticness...</div>
+            </div><br>
             <button onclick="signup();">Sign Up</button><button class="bad" onclick="reset();">Cancel</button><br>
         </div>
         <div id="logout">
@@ -47,6 +51,7 @@
             <h2>JavaScript is not supported on this device. If you've turned it off, please turn it on!</h2>
         </div>
         <p id="error"></p>
+        <div id="pend"></div>
     </body>
     <script type="text/javascript" src="borealis.js"></script>
 </html>

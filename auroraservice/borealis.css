@@ -37,6 +37,27 @@ button:hover {
     opacity: 0.8;
 }
 
+.progressBar {
+    position: relative;
+    width: 50%;
+    left: 25%;
+    background-color: #cccccc;
+    height: 40px;
+    text-align: left;
+}
+
+.progressInside {
+    width: 0%;
+    height: 40px;
+    background-color: #3cbde3;
+}
+
+.progressLabel {
+    position: relative;
+    top: -30px;
+    left: 20px;
+}
+
 #error {
     color: #ed370e;
 }
@@ -57,5 +78,10 @@ button:hover {
     button {
         width: 80%;
         margin: 8px 5px;
+    }
+
+    .progressBar {
+        width: 80%;
+        left: 10%;
     }
 }
