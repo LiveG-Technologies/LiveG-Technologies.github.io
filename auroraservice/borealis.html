@@ -25,14 +25,16 @@
         <div id="login">
             <h1>Login to Aurora Borealis.</h1>
             <h2>Your gateway to all things Aurora.</h2>
-            <input type="email" placeholder="E-mail" id="user"></input><br>
-            <input type="password" placeholder="Password" id="pass"></input><br>
+            <form>
+                <input type="email" placeholder="E-mail" id="user"></input><br>
+                <input type="password" placeholder="Password" id="pass"></input>
+            </form><br>
             <button onclick="login();">Login</button><button class="secondary" onclick="signupBefore();">Sign Up</button><br>
         </div>
         <div id="signup">
             <h1>Sign up for Aurora Borealis.</h1>
             <h2>Your gateway to all things Aurora.</h2>
-            <input placeholder="Username" id="name" autocomplete="off"></input><br>
+            <form autocomplete="off"><input placeholder="Username" id="name" autocomplete="off"></input></form><br>
             <button onclick="signup();">Sign Up</button><button class="bad" onclick="reset();">Cancel</button><br>
         </div>
         <div id="logout">
