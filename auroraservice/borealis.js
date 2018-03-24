@@ -62,7 +62,7 @@ function signupBefore() {
 
 function signup() {
     document.getElementById("error").innerHTML = "";
-    if(checkFields()) {
+    if(checkUsername()) {
         firebase.auth().createUserWithEmailAndPassword(document.getElementById("user").value, document.getElementById("pass").value).then(function() {
             firebase.database().ref("users/" + firebase.auth().currentUser.uid + "/_settings/name").set(document.getElementById("name").value);
         }).catch(function(error) {
