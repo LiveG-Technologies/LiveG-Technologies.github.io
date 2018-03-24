@@ -79,9 +79,9 @@ function logout() {
 }
 
 function reset() {
-    document.getElementById("login").style.display = "none";
+    document.getElementById("login").style.display = "unset";
     document.getElementById("signup").style.display = "none";
-    document.getElementById("logout").style.display = "unset";
+    document.getElementById("logout").style.display = "none";
 }
 
 var input = document.getElementById("pass");
