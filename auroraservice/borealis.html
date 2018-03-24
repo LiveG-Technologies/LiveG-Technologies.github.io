@@ -27,8 +27,13 @@
             <h2>Your gateway to all things Aurora.</h2>
             <input placeholder="E-mail" id="user"></input><br>
             <input type="password" placeholder="Password" id="pass"></input><br>
-            <button onclick="login();">Login</button><button class="secondary" onclick="signup();">Sign Up</button><br>
-            <p id="error"></p>
+            <button onclick="login();">Login</button><button class="secondary" onclick="signupBefore();">Sign Up</button><br>
+        </div>
+        <div id="signup">
+            <h1>Sign up for Aurora Borealis.</h1>
+            <h2>Your gateway to all things Aurora.</h2>
+            <input placeholder="Username" id="name"></input><br>
+            <button onclick="signup();">Sign Up</button><button class="bad" onclick="signup();">Cancel</button><br>
         </div>
         <div id="logout">
             <h1>Hello, user!</h1>
@@ -39,6 +44,7 @@
             <h1>Sorry! JS not supported.</h1>
             <h2>JavaScript is not supported on this device. If you've turned it off, please turn it on!</h2>
         </div>
+        <p id="error"></p>
     </body>
     <script type="text/javascript" src="borealis.js"></script>
 </html>
