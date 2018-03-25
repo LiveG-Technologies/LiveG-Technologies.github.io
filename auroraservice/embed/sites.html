@@ -53,9 +53,9 @@
 				app.readListOnChange("sites", function(data, key) {
 					app.readOnce("selected", function(siteInfo) {
 						if (key == siteInfo) {
-                			document.getElementById("content").innerHTML += data.name + " <em style='color: #888888;'>Selected</em>";
+                			document.getElementById("content").innerHTML += "<div style='width: calc(100% - 100px); float: left;'>" +  data.name + " <em style='color: #888888;'>Selected</em></div><button style='width: 80px; position: relative; top: -5px;' onclick='deleteSite(\"" + key + "\");'><i class='fas fa-times'></i> Delete</button>";
 						} else {
-							document.getElementById("content").innerHTML += "<a href='javascript:alert(\"Selected!\");'>" + data.name + "</a>";
+							document.getElementById("content").innerHTML += "<div style='width: calc(100% - 100px); float: left;'><a href='javascript:alert(\"Selected!\");'>" + data.name + "</a></div><button style='width: 80px; position: relative; top: -5px;' onclick='deleteSite(\"" + key + "\");'><i class='fas fa-times'></i> Delete</button>";
 						}
 					});
 				}, function(data) {
