@@ -70,6 +70,11 @@ button:hover {
     display: none;
 }
 
+#signup {
+    display: none;
+}
+
+
 @media (max-width: 600px) {
     input {
         width: 80%;
