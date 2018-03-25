@@ -5,29 +5,63 @@
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-		<script src="https://liveg-technologies.github.io/auroraservice/bappapi.js"></script>
+		<script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+		<style>
+			body {
+				font-size: 20px;
+				text-align: left;
+			}
+
+			#header {
+				text-align: center;
+			}
+
+			#buttons {
+				display: none;
+			}
+
+			button {
+				width: unset;
+			}
+
+			hr {
+				display: block;
+				height: 0px;
+				border: 0;
+				border-top: 5px solid #888888;
+				padding: 0; 
+			}
+		</style>
 	</head>
 	<body>
-		<h1 id="header">Please wait...</h1>
+		<div id="buttons">
+			<button><i class="fas fa-plus"></i> Add</button>
+			<hr>
+		</div>
+		<div id="content">
+			<h1 id="header">Please wait...</h1>
+		</div>
 	</body>
 	<script>
 		app.load("Webcount", "webcount");
 
         app.onLoginChange(function(loggedIn) {
             if (setup.loggedIn == true) {
+				document.getElementById("buttons").style.display = "unset";
+
 				app.readListOnChange("sites", function(data, key) {
 					app.readOnce("selected", function(siteInfo) {
 						if (key == siteInfo) {
-                			document.getElementsByTagName("body")[0].innerHTML += data.name + " <em style='color: #888888;'>Selected</em>";
+                			document.getElementById("content").innerHTML += data.name + " <em style='color: #888888;'>Selected</em>";
 						} else {
-							document.getElementsByTagName("body")[0].innerHTML += "<a href='javascript:alert(\"Selected!\");'>" + data.name + "</a>";
+							document.getElementById("content").innerHTML += "<a href='javascript:alert(\"Selected!\");'>" + data.name + "</a>";
 						}
 					});
 				}, function(data) {
-					document.getElementsByTagName("body")[0].innerHTML = "";
+					document.getElementById("content").innerHTML = "";
 				});
             } else {
-                document.getElementsByTagName("body")[0].innerHTML = "<h1>You aren't logged in. Please log in on the 'Account' page.</h1>";
+                document.getElementById("content").innerHTML = "<h1>You aren't logged in. Please log in on the 'Account' page.</h1>";
             }
         });
 	</script>
