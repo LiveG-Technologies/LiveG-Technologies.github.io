@@ -25,12 +25,28 @@
 				width: unset;
 			}
 
+			button.normal {
+				width: calc(25% - 10px);
+			}
+
 			hr {
 				display: block;
 				height: 0px;
 				border: 0;
 				border-top: 5px solid #888888;
 				padding: 0; 
+			}
+
+			#deleteAlert {
+				text-align: center;
+				display: none;
+			}
+
+			@media (max-width: 600px) {
+				button.normal {
+					width: 80%;
+					margin: 8px 5px;
+				}
 			}
 		</style>
 	</head>
@@ -42,12 +58,34 @@
 		<div id="content">
 			<h1 id="header">Please wait...</h1>
 		</div>
+		<div id="deleteAlert">
+			<h1 id="deleteTitle">Delete this site?</h1>
+			Do you really want to delete this site? You can't undo this!<br>
+			<button class="normal bad" onclick="doneDelete(true);">Delete</button><button class="normal secondary" onclick="doneDelete(false);">Cancel</button>
+		</div>
 	</body>
 	<script>
 		app.load("Webcount", "webcount");
 
+		var deleteKey = null;
+
 		function selectSite(key) {
 			app.write("selected", key);
+		}
+
+		function deleteSite(key) {
+			document.getElementById("content").style.display = "none";
+			document.getElementById("buttons").style.display = "none";
+			document.getElementById("deleteAlert").style.display = "block";
+			document.getElementById("deleteAlert").style.textAlign = "center";
+		}
+
+		function doneDelete(deleted) {
+			if (deleted) { app.write("sites/" + deleteKey, null); }
+
+			document.getElementById("content").style.display = "unset";
+			document.getElementById("buttons").style.display = "unset";
+			document.getElementById("deleteAlert").style.display = "none";
 		}
 
         app.onLoginChange(function(loggedIn) {
