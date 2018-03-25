@@ -95,6 +95,9 @@
 					url: document.getElementById("siteURL").value
 				}, function(key) {
 					app.write("selected", key);
+					
+					document.getElementById("siteName").value = "";
+					document.getElementById("siteURL").value = "";
 				});
 			}
 
