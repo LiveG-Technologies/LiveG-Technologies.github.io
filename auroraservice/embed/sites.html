@@ -69,6 +69,7 @@
 			<input id="siteName" placeholder="Site name"></input><br>
 			<input id="siteURL" placeholder="Public URL of index.html"></input><br>
 			<button class="normal" onclick="doneCreate(true);">Create</button><button class="normal secondary" onclick="doneCreate(false);">Cancel</button>
+			<p id="error"></p>
 		</div>
 		<div id="deleteAlert">
 			<h1>Delete this site?</h1>
@@ -89,7 +90,9 @@
 		}
 
 		function doneCreate(created) {
-			if (created) {
+			if (created && (document.getElementById("siteName").value == "" && document.getElementById("siteURL").value == "")) {
+				document.getElementById("error").innerHTML = "Oops! You have not filled out all of the required fields.";
+			} else if (created && !(document.getElementById("siteName").value == "" && document.getElementById("siteURL").value == "")) {
 				app.writeItem("sites", {
 					name: document.getElementById("siteName").value,
 					url: document.getElementById("siteURL").value
@@ -99,12 +102,17 @@
 					document.getElementById("siteName").value = "";
 					document.getElementById("siteURL").value = "";
 				});
+				
+				document.getElementById("content").style.display = "unset";
+				document.getElementById("buttons").style.display = "unset";
+				document.getElementById("createAlert").style.display = "none";
+				document.getElementById("deleteAlert").style.display = "none";
+			} else {
+				document.getElementById("content").style.display = "unset";
+				document.getElementById("buttons").style.display = "unset";
+				document.getElementById("createAlert").style.display = "none";
+				document.getElementById("deleteAlert").style.display = "none";
 			}
-
-			document.getElementById("content").style.display = "unset";
-			document.getElementById("buttons").style.display = "unset";
-			document.getElementById("createAlert").style.display = "none";
-			document.getElementById("deleteAlert").style.display = "none";
 		}
 
 		function selectSite(key) {
