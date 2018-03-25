@@ -23,18 +23,18 @@
 
             $.getJSON("https://ipapi.co/json", function(data) {
                 country = data.region;
+
+                var data = google.visualization.arrayToDataTable([
+                    ["Country", "Visitors"],
+                    [country, 1]
+                ]);
+
+                var options = {};
+
+                var chart = new google.visualization.GeoChart(document.getElementById("map"));
+
+                chart.draw(data, options);
             });
-
-            var data = google.visualization.arrayToDataTable([
-                ["Country", "Visitors"],
-                [country, 1]
-            ]);
-
-            var options = {};
-
-            var chart = new google.visualization.GeoChart(document.getElementById("map"));
-
-            chart.draw(data, options);
         }
         </script>
 </html>
