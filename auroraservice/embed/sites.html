@@ -46,20 +46,24 @@
 	<script>
 		app.load("Webcount", "webcount");
 
+		function selectSite(key) {
+			app.write("selected", key);
+		}
+
         app.onLoginChange(function(loggedIn) {
             if (setup.loggedIn == true) {
 				document.getElementById("buttons").style.display = "unset";
 
-				app.readListOnChange("sites", function(data, key) {
-					app.readOnce("selected", function(siteInfo) {
+				app.readOnChange("selected", function(siteInfo) {
+					app.readListOnChange("sites", function(data, key) {
 						if (key == siteInfo) {
                 			document.getElementById("content").innerHTML += "<div style='width: calc(100% - 100px); float: left;'>" +  data.name + " <em style='color: #888888;'>Selected</em></div><button class='bad' style='width: 80px; position: relative; top: -5px; padding: 5px;' onclick='deleteSite(\"" + key + "\");'><i class='fas fa-times'></i> Delete</button>";
 						} else {
-							document.getElementById("content").innerHTML += "<div style='width: calc(100% - 100px); float: left;'><a href='javascript:alert(\"Selected!\");'>" + data.name + "</a></div><button class='bad' style='width: 80px; position: relative; top: -5px; padding: 5px;' onclick='deleteSite(\"" + key + "\");'><i class='fas fa-times'></i> Delete</button>";
+							document.getElementById("content").innerHTML += "<div style='width: calc(100% - 100px); float: left;'><a href='javascript:void(0);' onclick='selectSite(\"" + key + "\")'>" + data.name + "</a></div><button class='bad' style='width: 80px; position: relative; top: -5px; padding: 5px;' onclick='deleteSite(\"" + key + "\");'><i class='fas fa-times'></i> Delete</button>";
 						}
+					}, function(data) {
+						document.getElementById("content").innerHTML = "";
 					});
-				}, function(data) {
-					document.getElementById("content").innerHTML = "";
 				});
             } else {
                 document.getElementById("content").innerHTML = "<h1>You aren't logged in. Please log in on the 'Account' page.</h1>";
