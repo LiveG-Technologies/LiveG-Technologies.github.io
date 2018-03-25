@@ -45,6 +45,10 @@ a:hover {
     color: #575757;
 }
 
+.serif {
+    font-family: 'Bitter', 'Arvo', serif;
+}
+
 .progressBar {
     position: relative;
     width: 50%;
