@@ -22,7 +22,7 @@
             var country = null;
 
             $.getJSON("https://ipapi.co/json", function(data) {
-                country = data.country;
+                country = data.region;
             });
 
             var data = google.visualization.arrayToDataTable([
