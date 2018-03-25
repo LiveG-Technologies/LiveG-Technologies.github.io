@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="https://liveg-technologies.github.io/auroraservice/borealis.css">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+		<script src="https://liveg-technologies.github.io/auroraservice/bappapi.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    </head>
+    <body>
+        <div id="map" style="width: 100%; height: 100%;"></div>
+    </body>
+    <script type="text/javascript">
+        google.charts.load("current", {
+            "packages": ["geochart"],
+            "mapsApiKey": "AIzaSyCHymU-SkCocjx_S-xRUQuaTM9WOZ2ZUoA"
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+        var country = null;
+        var ip = null;
+
+        $.get("http://ipinfo.io", function(data) {
+            ip = response.ip;
+        }, "jsonp");
+
+        $.getJSON("https://ipapi.co/" + ip + "/json", function(data) {
+            country = data.country;
+        });
+
+        var data = google.visualization.arrayToDataTable([
+            ["Country", "Visitors"],
+            [country, 1]
+        ]);
+
+        var options = {};
+
+        var chart = new google.visualization.GeoChart(document.getElementById("map"));
+
+        chart.draw(data, options);
+        </script>
+</html>
