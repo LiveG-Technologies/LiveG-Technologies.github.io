@@ -8,12 +8,18 @@
 		<script src="https://liveg-technologies.github.io/auroraservice/bappapi.js"></script>
 		<script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	</head>
-	<body class=".serif">
-		Loading...
+	<body class="serif">
+		<h3>Loading...</h3>
 	</body>
 	<script>
 		app.load("Webcount", "webcount");
 
-        app.readOnChange
+        app.readOnChange("selected", function(key) {
+            app.readOnChange("sites/" + key + "/name", function(name) {
+                app.readOnChange("sites/" + key + "/url", function(url) {
+                    document.getElementsByTagName("body")[0].innerHTML = "<h3>Site: " + name + "</h3><a href='" + url + "' target='_blank'>Visit</a> <a href='https://sites.google.com/view/aurorawebcount/dashboard/sites' target='_blank'>Change</a>"
+                });
+            });
+        });
 	</script>
 </html>
