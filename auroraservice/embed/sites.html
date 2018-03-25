@@ -15,9 +15,19 @@
 
         app.onLoginChange(function(loggedIn) {
             if (setup.loggedIn == true) {
-                document.getElementById("header").innerHTML = "";
+				app.readListOnChange("sites", function(data, key) {
+					app.readOnce("selected", function(siteInfo) {
+						if (key == siteInfo) {
+                			document.getElementsByTagName("body")[0].innerHTML += data.name + " <em style='color: #888888;'>Selected</em>";
+						} else {
+							document.getElementsByTagName("body")[0].innerHTML += "<a href='javascript:alert(\"Selected!\");'>" + data.name + "</a>";
+						}
+					});
+				}, function(data) {
+					document.getElementsByTagName("body")[0].innerHTML = "";
+				});
             } else {
-                document.getElementById("header").innerHTML = "You aren't logged in. Please log in on the 'Account' page.";
+                document.getElementsByTagName("body")[0].innerHTML = "<h1>You aren't logged in. Please log in on the 'Account' page.</h1>";
             }
         });
 	</script>
