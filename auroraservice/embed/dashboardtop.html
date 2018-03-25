@@ -9,17 +9,29 @@
 		<script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	</head>
 	<body class="serif">
-		<h3>Loading...</h3>
+        <div id="content">
+		    <h3>Loading...</h3>
+        </div>
 	</body>
 	<script>
 		app.load("Webcount", "webcount");
 
-        app.readOnChange("selected", function(key) {
-            app.readOnChange("sites/" + key + "/name", function(name) {
-                app.readOnChange("sites/" + key + "/url", function(url) {
-                    document.getElementsByTagName("body")[0].innerHTML = "<h3>Site: " + name + "</h3><a href='" + url + "' target='_blank'>Visit</a> <a href='https://sites.google.com/view/aurorawebcount/dashboard/sites' target='_blank'>Change</a>"
+        app.onLoginChange(function(loggedIn) {
+            if (setup.loggedIn == true) {
+                app.readOnChange("selected", function(key) {
+                    if (key == null) {
+                        document.getElementById("content").innerHTML = "<h3>No site selected.</h3><a href='https://sites.google.com/view/aurorawebcount/dashboard/sites' target='_blank'>Select a site</a>"
+                    } else {
+                        app.readOnChange("sites/" + key + "/name", function(name) {
+                            app.readOnChange("sites/" + key + "/url", function(url) {
+                                document.getElementById("content").innerHTML = "<h3>Site: " + name + "</h3><a href='" + url + "' target='_blank'>Visit</a> <a href='https://sites.google.com/view/aurorawebcount/dashboard/sites' target='_blank'>Change</a>"
+                            });
+                        });
+                    }
                 });
-            });
+            } else {
+                document.getElementById("content").innerHTML = "<h3>Not logged in.</h3>Please login on the 'Account' page."
+            }
         });
 	</script>
 </html>
