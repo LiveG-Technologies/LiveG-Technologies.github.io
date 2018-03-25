@@ -42,8 +42,8 @@ function change(user) {
         if (user && user.uid != currentUid) {
             // Sign in operation.
             firebase.database().ref("users/" + user.uid + "/_settings/name").once("value").then(function(snapshot) {
-                document.getElementById("logoutTitle").innerHTML = "Hello, " + snapshot.val();
-                
+                document.getElementById("logoutTitle").innerHTML = "Hello, " + snapshot.val() + "!";
+
                 document.getElementById("login").style.display = "none";
                 document.getElementById("signup").style.display = "none";
                 document.getElementById("logout").style.display = "unset";
