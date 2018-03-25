@@ -18,26 +18,28 @@
         });
         google.charts.setOnLoadCallback(drawRegionsMap);
 
-        var country = null;
-        var ip = null;
+        function drawRegionsMap() {
+            var country = null;
+            var ip = null;
 
-        $.get("http://ipinfo.io", function(data) {
-            ip = response.ip;
-        }, "jsonp");
+            $.get("http://ipinfo.io", function(data) {
+                ip = response.ip;
+            }, "jsonp");
 
-        $.getJSON("https://ipapi.co/" + ip + "/json", function(data) {
-            country = data.country;
-        });
+            $.getJSON("https://ipapi.co/" + ip + "/json", function(data) {
+                country = data.country;
+            });
 
-        var data = google.visualization.arrayToDataTable([
-            ["Country", "Visitors"],
-            [country, 1]
-        ]);
+            var data = google.visualization.arrayToDataTable([
+                ["Country", "Visitors"],
+                [country, 1]
+            ]);
 
-        var options = {};
+            var options = {};
 
-        var chart = new google.visualization.GeoChart(document.getElementById("map"));
+            var chart = new google.visualization.GeoChart(document.getElementById("map"));
 
-        chart.draw(data, options);
+            chart.draw(data, options);
+        }
         </script>
 </html>
