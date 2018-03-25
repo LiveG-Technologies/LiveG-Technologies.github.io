@@ -37,6 +37,14 @@ button:hover {
     opacity: 0.8;
 }
 
+a {
+    color: black;
+}
+
+a:hover {
+    color: #575757;
+}
+
 .progressBar {
     position: relative;
     width: 50%;
@@ -73,7 +81,6 @@ button:hover {
 #signup {
     display: none;
 }
-
 
 @media (max-width: 600px) {
     input {
