@@ -41,9 +41,13 @@ function change(user) {
     if (typeof(Storage) !== "undefined") {
         if (user && user.uid != currentUid) {
             // Sign in operation.
-            document.getElementById("login").style.display = "none";
-            document.getElementById("signup").style.display = "none";
-            document.getElementById("logout").style.display = "unset";
+            firebase.database().ref("users/" + user.uid + "/_settings/name").once("value").then(function(snapshot) {
+                document.getElementById("logoutTitle").innerHTML = "Hello, " + snapshot.val();
+                
+                document.getElementById("login").style.display = "none";
+                document.getElementById("signup").style.display = "none";
+                document.getElementById("logout").style.display = "unset";
+            });
         } else {
             // Sign out operation.
             document.getElementById("login").style.display = "unset";
