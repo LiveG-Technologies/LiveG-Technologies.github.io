@@ -23,7 +23,7 @@
             var ip = null;
 
             $.get("https://ipinfo.io", function(data) {
-                ip = response.ip;
+                ip = data.ip;
             }, "jsonp");
 
             $.getJSON("https://ipapi.co/" + ip + "/json", function(data) {
