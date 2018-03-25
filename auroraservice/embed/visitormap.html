@@ -20,13 +20,8 @@
 
         function drawRegionsMap() {
             var country = null;
-            var ip = null;
 
-            $.get("https://ipinfo.io", function(data) {
-                ip = data.ip;
-            }, "jsonp");
-
-            $.getJSON("https://ipapi.co/" + ip + "/json", function(data) {
+            $.getJSON("https://ipapi.co/json", function(data) {
                 country = data.country;
             });
 
