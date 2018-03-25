@@ -59,9 +59,11 @@ var app = {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
         }
     },
-    writeItem: function(tag, JSON) {
+    writeItem: function(tag, JSON, callback) {
         if (setup.loggedIn != false && setup.storedAs != null) {
-            firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).push().set(JSON);
+            var itemRef = firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).push()
+            itemRef.set(JSON);
+            callback(itemRef.getKey());
         } else if (setup.storedAs == null) {
             throw("App not properly initialised. Please fix this by using the `app.load` command.")
         }

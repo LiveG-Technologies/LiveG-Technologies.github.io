@@ -37,6 +37,11 @@
 				padding: 0; 
 			}
 
+			#createAlert {
+				text-align: center;
+				display: none;
+			}
+
 			#deleteAlert {
 				text-align: center;
 				display: none;
@@ -52,14 +57,21 @@
 	</head>
 	<body>
 		<div id="buttons">
-			<button><i class="fas fa-plus"></i> Add</button>
+			<button onclick="createSite();"><i class="fas fa-plus"></i> Create</button>
 			<hr>
 		</div>
 		<div id="content">
 			<h1 id="header">Please wait...</h1>
 		</div>
+		<div id="createAlert">
+			<h1>Create site</h1>
+			Enter the site's details below.<br>
+			<input id="siteName" placeholder="Site name"></input><br>
+			<input id="siteURL" placeholder="Public URL of index.html"></input><br>
+			<button class="normal" onclick="doneCreate(true);">Create</button><button class="normal secondary" onclick="doneCreate(false);">Cancel</button>
+		</div>
 		<div id="deleteAlert">
-			<h1 id="deleteTitle">Delete this site?</h1>
+			<h1>Delete this site?</h1>
 			Do you really want to delete this site? You can't undo this!<br>
 			<button class="normal bad" onclick="doneDelete(true);">Delete</button><button class="normal secondary" onclick="doneDelete(false);">Cancel</button>
 		</div>
@@ -68,6 +80,29 @@
 		app.load("Webcount", "webcount");
 
 		var deleteKey = null;
+
+		function createSite() {
+			document.getElementById("content").style.display = "none";
+			document.getElementById("buttons").style.display = "none";
+			document.getElementById("createAlert").style.display = "block";
+			document.getElementById("deleteAlert").style.display = "none";
+		}
+
+		function doneCreate(created) {
+			if (created) {
+				app.writeItem("sites", {
+					name: document.getElementById("siteName").value,
+					url: document.getElementById("siteURL").value
+				}, function(key) {
+					app.write("selected", key);
+				});
+			}
+
+			document.getElementById("content").style.display = "unset";
+			document.getElementById("buttons").style.display = "unset";
+			document.getElementById("createAlert").style.display = "none";
+			document.getElementById("deleteAlert").style.display = "none";
+		}
 
 		function selectSite(key) {
 			app.write("selected", key);
@@ -78,15 +113,19 @@
 
 			document.getElementById("content").style.display = "none";
 			document.getElementById("buttons").style.display = "none";
+			document.getElementById("createAlert").style.display = "none";
 			document.getElementById("deleteAlert").style.display = "block";
-			document.getElementById("deleteAlert").style.textAlign = "center";
 		}
 
 		function doneDelete(deleted) {
-			if (deleted) { app.write("sites/" + deleteKey, null); }
+			if (deleted) {
+				app.write("sites/" + deleteKey, null);
+				app.write("selected", null);
+			}
 
 			document.getElementById("content").style.display = "unset";
 			document.getElementById("buttons").style.display = "unset";
+			document.getElementById("createAlert").style.display = "none";
 			document.getElementById("deleteAlert").style.display = "none";
 		}
 
