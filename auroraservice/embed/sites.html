@@ -83,6 +83,10 @@
 		var deleteKey = null;
 
 		function createSite() {
+			document.getElementById("error").innerHTML = "";
+			document.getElementById("siteName").value = "";
+			document.getElementById("siteURL").value = "";
+
 			document.getElementById("content").style.display = "none";
 			document.getElementById("buttons").style.display = "none";
 			document.getElementById("createAlert").style.display = "block";
@@ -90,17 +94,16 @@
 		}
 
 		function doneCreate(created) {
-			if (created && (document.getElementById("siteName").value == "" && document.getElementById("siteURL").value == "")) {
+			if (created && (document.getElementById("siteName").value == "" || document.getElementById("siteURL").value == "")) {
 				document.getElementById("error").innerHTML = "Oops! You have not filled out all of the required fields.";
-			} else if (created && !(document.getElementById("siteName").value == "" && document.getElementById("siteURL").value == "")) {
+			} else if (created && (document.getElementById("siteName").value == "" || (document.getElementById("siteURL").value.substring(0, 8) != "https://" && document.getElementById("siteURL").value.substring(0, 7) != "http://" && document.getElementById("siteURL").value.substring(0, 2) != "//"))) {
+				document.getElementById("error").innerHTML = "Oops! You haven't entered a valid web address. Try adding a 'http://' at the start.";
+			} else if (created && (document.getElementById("siteName").value != "" && document.getElementById("siteURL").value != "")) {
 				app.writeItem("sites", {
 					name: document.getElementById("siteName").value,
 					url: document.getElementById("siteURL").value
 				}, function(key) {
 					app.write("selected", key);
-
-					document.getElementById("siteName").value = "";
-					document.getElementById("siteURL").value = "";
 				});
 				
 				document.getElementById("content").style.display = "unset";
