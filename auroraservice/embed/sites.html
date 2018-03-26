@@ -100,7 +100,7 @@
 				document.getElementById("error").innerHTML = "Oops! You haven't entered a valid web address. Try adding a 'http://' at the start.";
 			} else if (created && (document.getElementById("siteName").value != "" && document.getElementById("siteURL").value != "")) {
 				app.writeItem("sites", {
-					name: document.getElementById("siteName").value.replace(/</g, "&lt;").replace(/>/g, "&gt;"),
+					name: document.getElementById("siteName").value.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/&/g, "&amp;"),
 					url: document.getElementById("siteURL").value
 				}, function(key) {
 					app.write("selected", key);

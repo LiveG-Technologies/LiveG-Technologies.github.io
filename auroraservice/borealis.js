@@ -107,7 +107,7 @@ function signup() {
     document.getElementById("error").innerHTML = "";
     if (checkUsername() && document.getElementById("pbLabel").innerHTML == "You're not a robot!") {
         firebase.auth().createUserWithEmailAndPassword(document.getElementById("user").value, document.getElementById("pass").value).then(function() {
-            firebase.database().ref("users/" + firebase.auth().currentUser.uid + "/_settings/name").set(document.getElementById("name").value.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
+            firebase.database().ref("users/" + firebase.auth().currentUser.uid + "/_settings/name").set(document.getElementById("name").value.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/&/g, "&amp;"));
         }).catch(function(error) {
             document.getElementById("error").innerHTML = "Oops! " + error.message.replace(/email/g, "e-mail").replace(/E-mail/g, "E-mail");
         });
