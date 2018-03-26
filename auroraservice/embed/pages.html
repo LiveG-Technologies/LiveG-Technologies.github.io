@@ -144,15 +144,26 @@
             if (loggedIn == true) {
                 app.readOnChange("selected", function(key) {
                     if (key == null) {
+						document.getElementById("content").style.display = "unset";
+						document.getElementById("buttons").style.display = "none";
+						document.getElementById("createAlert").style.display = "none";
+						document.getElementById("deleteAlert").style.display = "none";
 						document.getElementById("content").innerHTML = "<h1>You haven't selected a site. Please select a site on the 'Sites' page.</h1>";
 					} else {
+						document.getElementById("content").style.display = "unset";
 						document.getElementById("buttons").style.display = "unset";
+						document.getElementById("createAlert").style.display = "none";
+						document.getElementById("deleteAlert").style.display = "none";
 
 						app.readOnChange("selected", function(siteInfo) {
 							app.readListOnChange("sites/" + siteInfo + "/pages", function(data, key) {
-								document.getElementById("content").innerHTML += "<div style='width: calc(100% - 100px); float: left;'>" +  data.name + "</div><button class='bad' style='width: 80px; position: relative; top: -5px; padding: 5px;' onclick='deletePage(\"" + key + "\");'><i class='fas fa-times'></i> Delete</button>";
+								if (siteInfo != null) {
+									document.getElementById("content").innerHTML += "<div style='width: calc(100% - 100px); float: left;'>" +  data.name + "</div><button class='bad' style='width: 80px; position: relative; top: -5px; padding: 5px;' onclick='deletePage(\"" + key + "\");'><i class='fas fa-times'></i> Delete</button>";
+								}
 							}, function(data) {
-								document.getElementById("content").innerHTML = "";
+								if (siteInfo != null) {
+									document.getElementById("content").innerHTML = "";
+								}
 							});
 						});
 					}
