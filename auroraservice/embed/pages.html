@@ -103,8 +103,6 @@
 					app.writeItem("sites/" + siteInfo + "/pages", {
 						name: document.getElementById("pageName").value.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/&/g, "&amp;"),
 						url: document.getElementById("pageURL").value
-					}, function(key) {
-						app.write("selected", key);
 					});
 				});
 				
