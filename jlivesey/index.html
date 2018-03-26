@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>James Livesey</title>
+        <link rel="icon" href="favicon.png">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="index.html"><img src="logo.png" id="logo" /></a>
+        </header>
+        <section>
+            <span class="title">What My Blog Can Do</span> <span class="date">26/03/2018</span>
+            <p>So, I'm not using anything fancy like WordPress (but I do for my <a href="http://jameslivesey.co.uk" target="_blank" class="black">main blog</a>). I'm using HTML, CSS and JavaScript. As pure as it can get.</p>
+            <p>One of the most important things that I needed is the ability to add <code>&lt;code&gt;</code> snippets. They're great in the middle of sentences, although I don't suggest speaking code in the middle of a normal day-to-day sentence.</p>
+            <p>That's why I have <code>&lt;pre&gt;</code> code blocks at hand. And, with a copy button so you can <del>steal</del> use/modify/delete/do-what-ever-you-want my code. Here's an example of this:</p>
+            <div class="right">
+                <pre>document.onload = function() {
+    alert("This thing is really cool, it can do so many great functions.");
+}</pre>
+                <button class="small" onclick="copyCode(this);">Copy</button>
+            </div>
+            <p>Now try the copy button on this next code snippet, and paste it into the JavaScript console:</p>
+            <div class="right">
+                <pre>while (true) {
+    alert("Hey! I'm here as a sole purpose to annoy you.");
+}</pre>
+                <button class="small" onclick="copyCode(this);">Copy</button>
+            </div>
+            <p><a href="javascript:;" onclick="while (true) { alert(`Hey! I'm here as a sole purpose to annoy you.`);}" class="black">#totallyNotAnnoying</a>!</p>
+            <p>...Don't press that hyperlink. That's something that my blog can do: <del>destroy your computer</del> run JavaScript!</p>
+            <center class="section" onload="doShow(this);"><button class="section" onclick="doResize(this);">Read More...</button></center>
+        </section>
+        <section>
+            <span class="title">My First Post</span> <span class="date">26/03/2018</span>
+            <p>Hello, world!</p>
+            <p>I'm James Livesey, the creator of <a href="https://liveg.tech" target="_blank" class="black">LiveG Technologies</a>. You may have known me from a series of events:</p>
+            <ul>
+                <li>UEA Scratch Competition 2015 (I won something)</li>
+                <li>Sync The City 2015 (I was sneakily allowed in)</li>
+                <li>The Apple Store (I was doing an Hour Of Code there, but only took me 40 mins)</li>
+                <li>Whitespace (a startup hub)</li>
+            </ul>
+            <p>There's more of that on my <a href="http://jameslivesey.co.uk" target="_blank" class="black">main blog</a>. On this blog, I am going to show you some more in-depth code, rather than just the places I've visited. And I'll throw in some funny stuff, too. Like odd software happenings that I've encountered!</p>
+            <p>I can now code in <code>(this.knowledge.programmingLanguages.length > 14)</code>. (If that didn't compute in your head, that's over 14 programming languages, but if you really didn't know that, you'll find this blog boring!) I have been coding since <code>(this.age >= 6)</code>, using VBA (on PowerPoint, as you do).</p>
+            <p>But anyway, I'll <em>try</em> and maintain this blog with the latest snippets of code!</p>
+            <center class="section" onload="doShow(this);"><button class="section" onclick="doResize(this);">Read More...</button></center>
+        </section>
+        <footer>
+            Copyright &copy; <a href="https://liveg.tech" target="_blank" class="black">LiveG</a>. All Rights Reserved.<br>
+            See my professional site! <a href="http://jameslivesey.co.uk" target="_blank" class="black">jameslivesey.co.uk</a>
+        </footer>
+    </body>
+</html>
