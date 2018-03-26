@@ -104,6 +104,10 @@
 					url: document.getElementById("siteURL").value
 				}, function(key) {
 					app.write("selected", key);
+					app.writeItem("sites/" + key + "/pages", {
+						name: "Home",
+						url: document.getElementById("siteURL").value
+					})
 				});
 				
 				document.getElementById("content").style.display = "unset";
