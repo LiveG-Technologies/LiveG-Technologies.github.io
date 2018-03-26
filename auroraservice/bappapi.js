@@ -61,7 +61,7 @@ var app = {
     },
     writeItem: function(tag, JSON, callback) {
         if (setup.loggedIn != false && setup.storedAs != null) {
-            var itemRef = firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).push()
+            var itemRef = firebase.database().ref("users/" + setup.userUid + "/" + setup.storedAs + "/" + tag).push();
             itemRef.set(JSON);
             callback(itemRef.getKey());
         } else if (setup.storedAs == null) {

@@ -99,7 +99,7 @@
 			} else if (created && (document.getElementById("pageName").value == "" || (document.getElementById("pageURL").value.substring(0, 8) != "https://" && document.getElementById("pageURL").value.substring(0, 7) != "http://" && document.getElementById("pageURL").value.substring(0, 2) != "//"))) {
 				document.getElementById("error").innerHTML = "Oops! You haven't entered a valid web address. Try adding a 'http://' at the start.";
 			} else if (created && (document.getElementById("pageName").value != "" && document.getElementById("pageURL").value != "")) {
-				app.readOnChange("selected", function(siteInfo) {
+				app.readOnce("selected", function(siteInfo) {
 					app.writeItem("sites/" + siteInfo + "/pages", {
 						name: document.getElementById("pageName").value.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/&/g, "&amp;"),
 						url: document.getElementById("pageURL").value
