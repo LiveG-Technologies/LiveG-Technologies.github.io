@@ -151,7 +151,7 @@
 		}
 
         app.onLoginChange(function(loggedIn) {
-            if (setup.loggedIn == true) {
+            if (loggedIn == true) {
 				document.getElementById("buttons").style.display = "unset";
 
 				app.readOnChange("selected", function(siteInfo) {

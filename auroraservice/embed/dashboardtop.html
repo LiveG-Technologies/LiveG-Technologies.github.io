@@ -24,7 +24,7 @@
 		app.load("Webcount", "webcount");
 
         app.onLoginChange(function(loggedIn) {
-            if (setup.loggedIn == true) {
+            if (loggedIn == true) {
                 app.readOnChange("selected", function(key) {
                     if (key == null) {
                         document.getElementById("content").innerHTML = "<h3>No site selected.</h3><a href='https://sites.google.com/view/aurorawebcount/dashboard/sites' target='_blank'>Select a site</a>"

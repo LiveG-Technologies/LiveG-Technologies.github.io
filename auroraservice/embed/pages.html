@@ -129,7 +129,7 @@
 
 		function doneDelete(deleted) {
 			if (deleted) {
-				app.readOnChange("selected", function(siteInfo) {
+				app.readOnce("selected", function(siteInfo) {
 					app.write("sites/" + siteInfo + "/pages/" + deleteKey, null);
 				});
 			}
@@ -141,9 +141,9 @@
 		}
 
         app.onLoginChange(function(loggedIn) {
-            if (setup.loggedIn == true) {
-				app.readOnChange("selected", function(siteInfo) {
-					if (siteInfo == null) {
+            if (loggedIn == true) {
+                app.readOnChange("selected", function(key) {
+                    if (key == null) {
 						document.getElementById("content").innerHTML = "<h1>You haven't selected a site. Please select a site on the 'Sites' page.</h1>";
 					} else {
 						document.getElementById("buttons").style.display = "unset";
