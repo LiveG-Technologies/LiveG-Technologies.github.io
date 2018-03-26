@@ -94,8 +94,6 @@
 		}
 
 		function doneCreate(created) {
-			var newKey = null;
-
 			if (created && (document.getElementById("siteName").value == "" || document.getElementById("siteURL").value == "")) {
 				document.getElementById("error").innerHTML = "Oops! You have not filled out all of the required fields.";
 			} else if (created && (document.getElementById("siteName").value == "" || (document.getElementById("siteURL").value.substring(0, 8) != "https://" && document.getElementById("siteURL").value.substring(0, 7) != "http://" && document.getElementById("siteURL").value.substring(0, 2) != "//"))) {
@@ -106,12 +104,13 @@
 					url: document.getElementById("siteURL").value
 				}, function(key) {
 					app.write("selected", key);
-					newKey = key;
 				});
 				
-				app.writeItem("sites/" + newKey + "/pages", {
-					name: "Home",
-					url: document.getElementById("siteURL").value
+				app.readOnce("selected", function(siteInfo) {
+					app.writeItem("sites/" + siteInfo + "/pages", {
+						name: "Home",
+						url: document.getElementById("siteURL").value
+					});
 				});
 
 				document.getElementById("content").style.display = "unset";
