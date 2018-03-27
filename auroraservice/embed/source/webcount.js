@@ -56,4 +56,4 @@ setInterval(function() {
             bot = false;
         }
     }
-}, 10000);
+}, 5000);
