@@ -5,7 +5,7 @@ var webcount = {
             site = apiKey.substring(28, 48);
             page = apiKey.substring(48, 68);
 
-            document.body += "<iframe src='https://liveg-technologies.github.io/auroraservice/embed/source/webcount.html?user=" + user + "&site=" + site + "&page=" + page + "' width='0' height='0' style='border: none;'>";
+            document.body.innerHTML += "<iframe src='https://liveg-technologies.github.io/auroraservice/embed/source/webcount.html?user=" + user + "&site=" + site + "&page=" + page + "' width='0' height='0' style='border: none;'>";
 
             console.log("Aurora Webocunt initialised successfully.");
         } else {
