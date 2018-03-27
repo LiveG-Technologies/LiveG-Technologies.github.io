@@ -1,12 +1,45 @@
 var bot = true;
+var botTimeout = 2;
 
 function getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 }
 
-user = getURLParameter("user");
-site = getURLParameter("site");
-page = getURLParameter("page");
+var user = getURLParameter("user");
+var site = getURLParameter("site");
+var page = getURLParameter("page");
+
+function botDiscount() {
+    firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/bots").once("value").then(function(snapshot) {
+        var data = snapshot.val();
+        if (data == null) {data = 0};
+
+        firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/bots").set(data - 1);
+    });
+
+    firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/bots").once("value").then(function(snapshot) {
+        var data = snapshot.val();
+        if (data == null) {data = 0};
+
+        firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/bots").set(data - 1);
+    });
+    
+    firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/visits").once("value").then(function(snapshot) {
+        var data = snapshot.val();
+        if (data == null) {data = 0};
+
+        firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/visits").set(data + 1);
+    });
+
+    firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/visits").once("value").then(function(snapshot) {
+        var data = snapshot.val();
+        if (data == null) {data = 0};
+
+        firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/visits").set(data + 1);
+    });
+
+    bot = false;
+}
 
 firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/bots").once("value").then(function(snapshot) {
     var data = snapshot.val();
@@ -25,35 +58,13 @@ firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/bot
 setInterval(function() {
     if (bot == true) {
         if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
-            firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/bots").once("value").then(function(snapshot) {
-                var data = snapshot.val();
-                if (data == null) {data = 0};
+            botDiscount();
+        } else {
+            botTimeout -= 1;
 
-                firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/bots").set(data - 1);
-            });
-
-            firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/bots").once("value").then(function(snapshot) {
-                var data = snapshot.val();
-                if (data == null) {data = 0};
-
-                firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/bots").set(data - 1);
-            });
-            
-            firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/visits").once("value").then(function(snapshot) {
-                var data = snapshot.val();
-                if (data == null) {data = 0};
-
-                firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/visits").set(data + 1);
-            });
-
-            firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/visits").once("value").then(function(snapshot) {
-                var data = snapshot.val();
-                if (data == null) {data = 0};
-
-                firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/visits").set(data + 1);
-            });
-
-            bot = false;
+            if (botTimeout == 0) {
+                botDiscount();
+            }
         }
     }
 }, 5000);
