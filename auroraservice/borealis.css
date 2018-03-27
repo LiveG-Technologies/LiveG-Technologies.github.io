@@ -49,6 +49,10 @@ a:hover {
     font-family: 'Bitter', 'Arvo', serif;
 }
 
+.left {
+    text-align: left;
+}
+
 .progressBar {
     position: relative;
     width: 50%;
