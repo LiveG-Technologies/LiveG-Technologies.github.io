@@ -51,6 +51,10 @@
 				display: none;
 			}
 
+			#infoButton {
+				display: none;
+			}
+
 			@media (max-width: 600px) {
 				button.normal {
 					width: 80%;
@@ -61,6 +65,7 @@
 	</head>
 	<body>
 		<div id="buttons">
+			<span id="infoButton"><button onclick="home();" class="secondary"><i class="fas fa-home"></i> Home</button> </span>
 			<button onclick="createPage();"><i class="fas fa-plus"></i> Create</button>
 			<hr>
 		</div>
@@ -98,6 +103,7 @@
 
 			document.getElementById("content").style.display = "none";
 			document.getElementById("info").style.display = "none";
+			document.getElementById("infoButton").style.display = "none";
 			document.getElementById("buttons").style.display = "none";
 			document.getElementById("createAlert").style.display = "block";
 			document.getElementById("deleteAlert").style.display = "none";
@@ -118,12 +124,14 @@
 				
 				document.getElementById("content").style.display = "unset";
 				document.getElementById("info").style.display = "none";
+				document.getElementById("infoButton").style.display = "none";
 				document.getElementById("buttons").style.display = "unset";
 				document.getElementById("createAlert").style.display = "none";
 				document.getElementById("deleteAlert").style.display = "none";
 			} else {
 				document.getElementById("content").style.display = "unset";
 				document.getElementById("info").style.display = "none";
+				document.getElementById("infoButton").style.display = "none";
 				document.getElementById("buttons").style.display = "unset";
 				document.getElementById("createAlert").style.display = "none";
 				document.getElementById("deleteAlert").style.display = "none";
@@ -140,6 +148,16 @@
 
 			document.getElementById("content").style.display = "none";
 			document.getElementById("info").style.display = "unset";
+			document.getElementById("infoButton").style.display = "unset";
+			document.getElementById("buttons").style.display = "unset";
+			document.getElementById("createAlert").style.display = "none";
+			document.getElementById("deleteAlert").style.display = "none";
+		}
+
+		function home() {
+			document.getElementById("content").style.display = "unset";
+			document.getElementById("info").style.display = "none";
+			document.getElementById("infoButton").style.display = "none";
 			document.getElementById("buttons").style.display = "unset";
 			document.getElementById("createAlert").style.display = "none";
 			document.getElementById("deleteAlert").style.display = "none";
@@ -150,6 +168,7 @@
 
 			document.getElementById("content").style.display = "none";
 			document.getElementById("info").style.display = "none";
+			document.getElementById("infoButton").style.display = "none";
 			document.getElementById("buttons").style.display = "none";
 			document.getElementById("createAlert").style.display = "none";
 			document.getElementById("deleteAlert").style.display = "block";
@@ -164,6 +183,7 @@
 
 			document.getElementById("content").style.display = "unset";
 			document.getElementById("info").style.display = "none";
+			document.getElementById("infoButton").style.display = "none";
 			document.getElementById("buttons").style.display = "unset";
 			document.getElementById("createAlert").style.display = "none";
 			document.getElementById("deleteAlert").style.display = "none";
@@ -175,6 +195,7 @@
                     if (key == null) {
 						document.getElementById("content").style.display = "unset";
 						document.getElementById("info").style.display = "none";
+						document.getElementById("infoButton").style.display = "none";
 						document.getElementById("buttons").style.display = "none";
 						document.getElementById("createAlert").style.display = "none";
 						document.getElementById("deleteAlert").style.display = "none";
@@ -182,6 +203,7 @@
 					} else {
 						document.getElementById("content").style.display = "unset";
 						document.getElementById("info").style.display = "none";
+						document.getElementById("infoButton").style.display = "none";
 						document.getElementById("buttons").style.display = "unset";
 						document.getElementById("createAlert").style.display = "none";
 						document.getElementById("deleteAlert").style.display = "none";
@@ -202,6 +224,7 @@
             } else {
 				document.getElementById("content").style.display = "unset";
 				document.getElementById("info").style.display = "none";
+				document.getElementById("infoButton").style.display = "none";
 				document.getElementById("buttons").style.display = "none";
 				document.getElementById("createAlert").style.display = "none";
 				document.getElementById("deleteAlert").style.display = "none";
