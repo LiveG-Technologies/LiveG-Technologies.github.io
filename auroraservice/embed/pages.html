@@ -74,10 +74,12 @@
 		</div>
 		<div id="info">
 			<h1 id="pageInfoName">Please wait...</h1>
-			<h2 id"visits">--- Visits</h2>
-			<p id="country">--- in this country</p>
-			<p id="bots">--- bots, not included</p>
-			<p id="time">--- minutes total viewing</p>
+			<div id="infoContent">
+				<h2 id"visits">--- Visits</h2>
+				<p id="country">--- in this country</p>
+				<p id="bots">--- bots, not included</p>
+				<p id="time">--- minutes total viewing</p>
+			</div>
 			<hr>
 			<h2>Embedding</h2>
 			Paste the following code in your website. For best results, paste it in the <code>body</code> section.
@@ -162,7 +164,7 @@
 						document.getElementById("time").innerHTML = data + " minutes total viewing";
 					}
 				}, function(data) {
-					document.getElementById("content").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
+					document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
 				});
 			});
 
@@ -181,7 +183,7 @@
 			document.getElementById("buttons").style.display = "unset";
 			document.getElementById("createAlert").style.display = "none";
 			document.getElementById("deleteAlert").style.display = "none";
-			document.getElementById("content").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
+			document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
 		}
 
 		function deletePage(key) {
@@ -221,7 +223,7 @@
 						document.getElementById("createAlert").style.display = "none";
 						document.getElementById("deleteAlert").style.display = "none";
 						document.getElementById("content").innerHTML = "<h1 id='header'>You haven't selected a site. Please select a site on the 'Sites' page.</h1>";
-						document.getElementById("content").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
+						document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
 					} else {
 						document.getElementById("content").style.display = "unset";
 						document.getElementById("info").style.display = "none";
@@ -251,7 +253,7 @@
 				document.getElementById("createAlert").style.display = "none";
 				document.getElementById("deleteAlert").style.display = "none";
                 document.getElementById("content").innerHTML = "<h1 id='header'>You aren't logged in. Please log in on the 'Account' page.</h1>";
-				document.getElementById("content").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
+				document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
             }
         });
 	</script>
