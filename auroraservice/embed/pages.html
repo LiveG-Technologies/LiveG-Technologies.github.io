@@ -47,6 +47,10 @@
 				display: none;
 			}
 
+			#info {
+				display: none;
+			}
+
 			@media (max-width: 600px) {
 				button.normal {
 					width: 80%;
@@ -62,6 +66,11 @@
 		</div>
 		<div id="content">
 			<h1 id="header">Please wait...</h1>
+		</div>
+		<div id="info">
+			<h1 id="pageInfoName">Please wait...</h1>
+			Paste the following code in your website. For best results, paste it in the <code>body</code> section.
+			<pre id="pageInfoEmbed">&lt;!-- Getting it... --&gt;</pre>
 		</div>
 		<div id="createAlert">
 			<h1>Create page</h1>
@@ -88,6 +97,7 @@
 			document.getElementById("pageURL").value = "";
 
 			document.getElementById("content").style.display = "none";
+			document.getElementById("info").style.display = "none";
 			document.getElementById("buttons").style.display = "none";
 			document.getElementById("createAlert").style.display = "block";
 			document.getElementById("deleteAlert").style.display = "none";
@@ -107,21 +117,39 @@
 				});
 				
 				document.getElementById("content").style.display = "unset";
+				document.getElementById("info").style.display = "none";
 				document.getElementById("buttons").style.display = "unset";
 				document.getElementById("createAlert").style.display = "none";
 				document.getElementById("deleteAlert").style.display = "none";
 			} else {
 				document.getElementById("content").style.display = "unset";
+				document.getElementById("info").style.display = "none";
 				document.getElementById("buttons").style.display = "unset";
 				document.getElementById("createAlert").style.display = "none";
 				document.getElementById("deleteAlert").style.display = "none";
 			}
 		}
 
+		function pageInfo(key) {
+			app.readOnChange("selected", function(siteInfo) {
+				app.readOnChange("sites/" + siteInfo + "/pages/" + key + "/name", function(name) {
+					document.getElementById("pageInfoName").innerHTML = "Info for " + name + "page";
+					document.getElementById("pageInfoEmbed").innerHTML = `&gt;script src="https://j.mp/aesourcewebcount">&lt;/script&gt;\n&lt;script&gt;webcount.create("` + setup.userUid + siteInfo + key + `");&lt;/script&gt;`;
+				});
+			});
+
+			document.getElementById("content").style.display = "none";
+			document.getElementById("info").style.display = "unset";
+			document.getElementById("buttons").style.display = "unset";
+			document.getElementById("createAlert").style.display = "none";
+			document.getElementById("deleteAlert").style.display = "none";
+		}
+
 		function deletePage(key) {
 			deleteKey = key;
 
 			document.getElementById("content").style.display = "none";
+			document.getElementById("info").style.display = "none";
 			document.getElementById("buttons").style.display = "none";
 			document.getElementById("createAlert").style.display = "none";
 			document.getElementById("deleteAlert").style.display = "block";
@@ -135,6 +163,7 @@
 			}
 
 			document.getElementById("content").style.display = "unset";
+			document.getElementById("info").style.display = "none";
 			document.getElementById("buttons").style.display = "unset";
 			document.getElementById("createAlert").style.display = "none";
 			document.getElementById("deleteAlert").style.display = "none";
@@ -145,12 +174,14 @@
                 app.readOnChange("selected", function(key) {
                     if (key == null) {
 						document.getElementById("content").style.display = "unset";
+						document.getElementById("info").style.display = "none";
 						document.getElementById("buttons").style.display = "none";
 						document.getElementById("createAlert").style.display = "none";
 						document.getElementById("deleteAlert").style.display = "none";
 						document.getElementById("content").innerHTML = "<h1 id='header'>You haven't selected a site. Please select a site on the 'Sites' page.</h1>";
 					} else {
 						document.getElementById("content").style.display = "unset";
+						document.getElementById("info").style.display = "none";
 						document.getElementById("buttons").style.display = "unset";
 						document.getElementById("createAlert").style.display = "none";
 						document.getElementById("deleteAlert").style.display = "none";
@@ -158,7 +189,7 @@
 						app.readOnChange("selected", function(siteInfo) {
 							app.readListOnChange("sites/" + siteInfo + "/pages", function(data, key) {
 								if (siteInfo != null) {
-									document.getElementById("content").innerHTML += "<div style='width: calc(100% - 100px); float: left;'>" +  data.name + "</div><button class='bad' style='width: 80px; position: relative; top: -5px; padding: 5px;' onclick='deletePage(\"" + key + "\");'><i class='fas fa-times'></i> Delete</button>";
+									document.getElementById("content").innerHTML += "<div style='width: calc(100% - 100px); float: left;'><a href='javascript:void(0);' onclick='pageInfo(\"" + key + "\")'>" +  data.name + "</a></div><button class='bad' style='width: 80px; position: relative; top: -5px; padding: 5px;' onclick='deletePage(\"" + key + "\");'><i class='fas fa-times'></i> Delete</button>";
 								}
 							}, function(data) {
 								if (siteInfo != null) {
@@ -170,6 +201,7 @@
 				});
             } else {
 				document.getElementById("content").style.display = "unset";
+				document.getElementById("info").style.display = "none";
 				document.getElementById("buttons").style.display = "none";
 				document.getElementById("createAlert").style.display = "none";
 				document.getElementById("deleteAlert").style.display = "none";
