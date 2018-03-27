@@ -134,7 +134,7 @@
 			app.readOnChange("selected", function(siteInfo) {
 				app.readOnChange("sites/" + siteInfo + "/pages/" + key + "/name", function(name) {
 					document.getElementById("pageInfoName").innerHTML = "Info for " + name + "page";
-					document.getElementById("pageInfoEmbed").innerHTML = `&gt;script src="https://j.mp/aesourcewebcount">&lt;/script&gt;\n&lt;script&gt;webcount.create("` + setup.userUid + siteInfo + key + `");&lt;/script&gt;`;
+					document.getElementById("pageInfoEmbed").innerHTML = `&lt;script src="https://j.mp/aesourcewebcount">&lt;/script&gt;\n&lt;script&gt;\n\twebcount.create("` + setup.userUid + siteInfo + key + `");\n&lt;/script&gt;`;
 				});
 			});
 
