@@ -31,7 +31,7 @@ function testRobot() {
             if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
                 pbMove("pb", 100, function() {
                     document.getElementById("pbLabel").innerHTML = "You're not a robot!";
-                })
+                });
             }
         } catch (e) {}
     });
