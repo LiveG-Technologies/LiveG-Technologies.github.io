@@ -12,14 +12,14 @@ firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" 
     var data = snapshot.val();
     if (data == null) {data = 0};
 
-    firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/bots").set(data - 1);
+    firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/bots").set(data + 1);
 });
 
 firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/bots").once("value").then(function(snapshot) {
     var data = snapshot.val();
     if (data == null) {data = 0};
 
-    firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/bots").set(data - 1);
+    firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/bots").set(data + 1);
 });
 
 setInterval(function() {
