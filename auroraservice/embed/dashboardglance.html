@@ -31,10 +31,14 @@
                                 document.getElementById("time").innerHTML = data + " minutes total viewing";
                             }
                         }, function(data) {
-                            document.getElementById("content").innerHTML = "<h1 id='visits'>--- Visits</h1><h2 id='country'>--- in this country</h2><h2 id='bots'>--- bots, not included</h2><h2 id='time'>--- minutes total viewing</h2>"
+                            document.getElementById("content").innerHTML = "<h1 id='visits'>--- Visits</h1><h2 id='country'>--- in this country</h2><h2 id='bots'>--- bots, not included</h2><h2 id='time'>--- minutes total viewing</h2>";
                         });
+                    } else {
+                        document.getElementById("content").innerHTML = "<h1 id='visits'>--- Visits</h1><h2 id='country'>--- in this country</h2><h2 id='bots'>--- bots, not included</h2><h2 id='time'>--- minutes total viewing</h2>";
                     }
                 });
+            } else {
+                document.getElementById("content").innerHTML = "<h1 id='visits'>--- Visits</h1><h2 id='country'>--- in this country</h2><h2 id='bots'>--- bots, not included</h2><h2 id='time'>--- minutes total viewing</h2>";
             }
         });
 	</script>
