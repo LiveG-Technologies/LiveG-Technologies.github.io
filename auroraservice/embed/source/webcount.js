@@ -57,9 +57,17 @@ firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/bot
 
 setInterval(function() {
     if (bot == true) {
-        if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
-            botDiscount();
-        } else {
+        try {
+            if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
+                botDiscount();
+            } else {
+                botTimeout -= 1;
+
+                if (botTimeout == 0) {
+                    botDiscount();
+                }
+            }
+        } catch (e) {
             botTimeout -= 1;
 
             if (botTimeout == 0) {
