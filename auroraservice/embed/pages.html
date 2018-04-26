@@ -165,7 +165,7 @@
 					app.readListOnChange("sites/" + siteInfo + "/pages/" + key + "/data", function(data, key) {
 						if (key == "visits") {
 							document.getElementById("visits").innerHTML = data + " Visits";
-						} else if (key == "country") {
+						} else if (key == "locations") {
 							document.getElementById("country").innerHTML = data[country]["visits"] + " in this country";
 						} else if (key == "bots") {
 							document.getElementById("bots").innerHTML = data + " bots, not included";
