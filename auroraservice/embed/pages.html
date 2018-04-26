@@ -83,7 +83,7 @@
 				<p id="mins">--- minutes total viewing</p>
 			</div>
 			<h2>Page Map</h2>
-			<div id="map" style="width: calc(100% - 16px); height: 50%;"></div>
+			<div id="map" style="width: calc(100% - 16px); height: 250px;">We haven't collected enough data to show you a map yet.</div>
 			<hr>
 			<h2>Embedding</h2>
 			Paste the following code in your website. For best results, paste it in the <code>body</code> section.
@@ -151,6 +151,8 @@
 		}
 
 		function pageInfo(key) {
+			document.getElementById("map").innerHTML = "We haven't collected enough data to show you a map yet.";
+
 			$.getJSON("https://ipapi.co/json", function(data) {
 				var country = data.region;
 
