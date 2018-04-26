@@ -195,17 +195,15 @@
 					if (loggedIn == true) {
 						app.readOnChange("selected", function(key) {
 							if (key != null) {
-								app.readOnChange("selected", function(siteInfo) {
-									app.readListOnChange("sites/" + siteInfo + "/pages/" + key + "/data/locations", function(data, key) {
-										var mins = data.mins;
-										if (mins == null) {mins = 0;}
+								app.readListOnChange("sites/" + siteInfo + "/pages/" + key + "/data/locations", function(data, key) {
+									var mins = data.mins;
+									if (mins == null) {mins = 0;}
 
-										dataTable.push([key, data.visits, Math.floor(data.mins)]);
+									dataTable.push([key, data.visits, Math.floor(data.mins)]);
 
-										chart.draw(google.visualization.arrayToDataTable(dataTable), options);
-									}, function(data) {
-										dataTable = [["Country", "Visits", "Minutes total viewing"]];
-									});
+									chart.draw(google.visualization.arrayToDataTable(dataTable), options);
+								}, function(data) {
+									dataTable = [["Country", "Visits", "Minutes total viewing"]];
 								});
 							}
 						});
