@@ -16,30 +16,34 @@
 	<script>
 		app.load("Webcount", "webcount");
 
-        app.onLoginChange(function(loggedIn) {
-            if (loggedIn == true) {
-                app.readOnChange("selected", function(key) {
-                    if (key != null) {
-                        app.readListOnChange("sites/" + key + "/data", function(data, key) {
-                            if (key == "visits") {
-                                document.getElementById("visits").innerHTML = data + " Visits";
-                            } else if (key == "country") {
-                                document.getElementById("country").innerHTML = data + " in this country";
-                            } else if (key == "bots") {
-                                document.getElementById("bots").innerHTML = data + " bots, not included";
-                            } else if (key == "time") {
-                                document.getElementById("time").innerHTML = data + " minutes total viewing";
-                            }
-                        }, function(data) {
-                            document.getElementById("content").innerHTML = "<h1 id='visits'>--- Visits</h1><h2 id='country'>--- in this country</h2><h2 id='bots'>--- bots, not included</h2><h2 id='time'>--- minutes total viewing</h2>";
-                        });
-                    } else {
-                        document.getElementById("content").innerHTML = "<h1 id='visits'>--- Visits</h1><h2 id='country'>--- in this country</h2><h2 id='bots'>--- bots, not included</h2><h2 id='time'>--- minutes total viewing</h2>";
-                    }
-                });
-            } else {
-                document.getElementById("content").innerHTML = "<h1 id='visits'>--- Visits</h1><h2 id='country'>--- in this country</h2><h2 id='bots'>--- bots, not included</h2><h2 id='time'>--- minutes total viewing</h2>";
-            }
+        $.getJSON("https://ipapi.co/json", function(data) {
+            var country = data.region;
+
+            app.onLoginChange(function(loggedIn) {
+                if (loggedIn == true) {
+                    app.readOnChange("selected", function(key) {
+                        if (key != null) {
+                            app.readListOnChange("sites/" + key + "/data", function(data, key) {
+                                if (key == "visits") {
+                                    document.getElementById("visits").innerHTML = data + " Visits";
+                                } else if (key == "locations") {
+                                    document.getElementById("country").innerHTML = data[country]["visits"] + " in this country";
+                                } else if (key == "bots") {
+                                    document.getElementById("bots").innerHTML = data + " bots, not included";
+                                } else if (key == "mins") {
+                                    document.getElementById("mins").innerHTML = data + " minutes total viewing";
+                                }
+                            }, function(data) {
+                                document.getElementById("content").innerHTML = "<h1 id='visits'>--- Visits</h1><h2 id='country'>--- in this country</h2><h2 id='bots'>--- bots, not included</h2><h2 id='mins'>--- minutes total viewing</h2>";
+                            });
+                        } else {
+                            document.getElementById("content").innerHTML = "<h1 id='visits'>--- Visits</h1><h2 id='country'>--- in this country</h2><h2 id='bots'>--- bots, not included</h2><h2 id='mins'>--- minutes total viewing</h2>";
+                        }
+                    });
+                } else {
+                    document.getElementById("content").innerHTML = "<h1 id='visits'>--- Visits</h1><h2 id='country'>--- in this country</h2><h2 id='bots'>--- bots, not included</h2><h2 id='mins'>--- minutes total viewing</h2>";
+                }
+            });
         });
 	</script>
 </html>
