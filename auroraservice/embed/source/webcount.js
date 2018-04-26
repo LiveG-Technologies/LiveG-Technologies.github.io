@@ -38,6 +38,24 @@ function botDiscount() {
         firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/visits").set(data + 1);
     });
 
+    $.getJSON("https://ipapi.co/json", function(data) {
+        var country = data.region;
+
+        firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/locations/" + country + "/visits").once("value").then(function(snapshot) {
+            var data = snapshot.val();
+            if (data == null) {data = 0};
+
+            firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/locations/" + country + "/visits").set(data + 1);
+        });
+
+        firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/locations/" + country + "/visits").once("value").then(function(snapshot) {
+            var data = snapshot.val();
+            if (data == null) {data = 0};
+
+            firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/locations/" + country + "/visits").set(data + 1);
+        });
+    });
+
     bot = false;
 }
 
@@ -76,3 +94,19 @@ setInterval(function() {
         }
     }
 }, 5000);
+
+setInterval(function () {
+    firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/mins").once("value").then(function(snapshot) {
+        var data = snapshot.val();
+        if (data == null) {data = 0};
+
+        firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/data/mins").set(data + 0.5);
+    });
+
+    firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/mins").once("value").then(function(snapshot) {
+        var data = snapshot.val();
+        if (data == null) {data = 0};
+
+        firebase.database().ref("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/mins").set(data + 0.5);
+    });
+}, 30000);
