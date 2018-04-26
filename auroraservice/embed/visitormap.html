@@ -36,7 +36,7 @@
                     if (loggedIn == true) {
                         app.readOnChange("selected", function(key) {
                             if (key != null) {
-                                app.readListOnChange("users/" + user + "/webcount/sites/" + site + "/pages/" + page + "/data/locations", function(data, key) {
+                                app.readListOnChange("users/" + setup.userUid + "/webcount/sites/" + key + "/data/locations", function(data, key) {
                                     var mins = data.mins;
                                     if (mins == null) {mins = 0;}
 
