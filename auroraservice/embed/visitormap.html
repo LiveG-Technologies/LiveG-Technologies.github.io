@@ -39,7 +39,7 @@
 
                                 dataTable.push([key, data.visits, Math.floor(data.mins)]);
 
-                                document.getElementById("map").style.display = "visible";
+                                document.getElementById("map").style.visibility = "visible";
 
                                 chart.draw(google.visualization.arrayToDataTable(dataTable), options);
                             }, function(data) {
