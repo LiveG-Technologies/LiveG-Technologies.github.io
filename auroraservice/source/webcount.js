@@ -7,7 +7,7 @@ var webcount = {
 
             document.body.innerHTML += "<iframe src='https://liveg-technologies.github.io/auroraservice/embed/source/webcount.html?user=" + user + "&site=" + site + "&page=" + page + "' width='0' height='0' style='border: none;'>";
 
-            console.log("Aurora Webocunt initialised successfully.");
+            console.log("Aurora Webcount initialised successfully.");
         } else {
             throw("The API key is invalid. It should be 68 characters long.");
         }
