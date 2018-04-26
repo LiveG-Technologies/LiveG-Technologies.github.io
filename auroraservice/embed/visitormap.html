@@ -27,29 +27,25 @@
                 colorAxis: {colors: ["#e8e8e8", "#4286f4"]}
             };
 
-            $.getJSON("https://ipapi.co/json", function(data) {
-                var country = data.region;
+            var dataTable = [["Country", "Visits", "Minutes total viewing"]];
 
-                var dataTable = [["Country", "Visits", "Minutes total viewing"]];
+            app.onLoginChange(function(loggedIn) {
+                if (loggedIn == true) {
+                    app.readOnChange("selected", function(key) {
+                        if (key != null) {
+                            app.readListOnChange("sites/" + key + "/data/locations", function(data, key) {
+                                var mins = data.mins;
+                                if (mins == null) {mins = 0;}
 
-                app.onLoginChange(function(loggedIn) {
-                    if (loggedIn == true) {
-                        app.readOnChange("selected", function(key) {
-                            if (key != null) {
-                                app.readListOnChange("users/" + setup.userUid + "/webcount/sites/" + key + "/data/locations", function(data, key) {
-                                    var mins = data.mins;
-                                    if (mins == null) {mins = 0;}
+                                dataTable.push([key, data.visits, data.mins]);
 
-                                    dataTable.push([key, data.visits, data.mins]);
-
-                                    chart.draw(google.visualization.arrayToDataTable(dataTable), options);
-                                }, function(data) {
-                                    dataTable = [];
-                                });
-                            }
-                        });
-                    }
-                });
+                                chart.draw(google.visualization.arrayToDataTable(dataTable), options);
+                            }, function(data) {
+                                dataTable = [];
+                            });
+                        }
+                    });
+                }
             });
         }
         </script>
