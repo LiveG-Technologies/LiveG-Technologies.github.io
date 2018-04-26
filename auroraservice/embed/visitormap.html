@@ -39,13 +39,13 @@
 
                                 dataTable.push([key, data.visits, Math.floor(data.mins)]);
 
-                                document.getElementById("map").style.display = "unset";
+                                document.getElementById("map").style.display = "visible";
 
                                 chart.draw(google.visualization.arrayToDataTable(dataTable), options);
                             }, function(data) {
                                 dataTable = [["Country", "Visits", "Minutes total viewing"]];
 
-                                document.getElementById("map").style.display = "none";
+                                document.getElementById("map").style.visibility = "hidden";
                             });
                         }
                     });
