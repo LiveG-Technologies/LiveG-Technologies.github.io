@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
 		<script src="https://liveg-technologies.github.io/auroraservice/bappapi.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 		<style>
 			body {
@@ -78,8 +79,10 @@
 				<h2 id"visits">--- Visits</h2>
 				<p id="country">--- in this country</p>
 				<p id="bots">--- bots, not included</p>
-				<p id="time">--- minutes total viewing</p>
+				<p id="mins">--- minutes total viewing</p>
 			</div>
+			<h2>Page Map</h2>
+			<div id="map" style="width: 100%; height: 100%;"></div>
 			<hr>
 			<h2>Embedding</h2>
 			Paste the following code in your website. For best results, paste it in the <code>body</code> section.
@@ -147,26 +150,65 @@
 		}
 
 		function pageInfo(key) {
-			app.readOnChange("selected", function(siteInfo) {
-				app.readOnChange("sites/" + siteInfo + "/pages/" + key + "/name", function(name) {
-					document.getElementById("pageInfoName").innerHTML = "Info for " + name + " page";
-					document.getElementById("pageInfoEmbed").innerHTML = `&lt;script src="https://j.mp/aesourcewebcount">&lt;/script&gt;\n&lt;script&gt;\n\twebcount.create("` + setup.userUid + siteInfo + key + `");\n&lt;/script&gt;`;
-				});
+			$.getJSON("https://ipapi.co/json", function(data) {
+				var country = data.region;
 
-				app.readListOnChange("sites/" + siteInfo + "/pages/" + key + "/data", function(data, key) {
-					if (key == "visits") {
-						document.getElementById("visits").innerHTML = data + " Visits";
-					} else if (key == "country") {
-						document.getElementById("country").innerHTML = data + " in this country";
-					} else if (key == "bots") {
-						document.getElementById("bots").innerHTML = data + " bots, not included";
-					} else if (key == "time") {
-						document.getElementById("time").innerHTML = data + " minutes total viewing";
-					}
-				}, function(data) {
-					document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
+				app.readOnChange("selected", function(siteInfo) {
+					app.readOnChange("sites/" + siteInfo + "/pages/" + key + "/name", function(name) {
+						document.getElementById("pageInfoName").innerHTML = "Info for " + name + " page";
+						document.getElementById("pageInfoEmbed").innerHTML = `&lt;script src="https://j.mp/aesourcewebcount">&lt;/script&gt;\n&lt;script&gt;\n\twebcount.create("` + setup.userUid + siteInfo + key + `");\n&lt;/script&gt;`;
+					});
+
+					app.readListOnChange("sites/" + siteInfo + "/pages/" + key + "/data", function(data, key) {
+						if (key == "visits") {
+							document.getElementById("visits").innerHTML = data + " Visits";
+						} else if (key == "country") {
+							document.getElementById("country").innerHTML = data[country]["visits"] + " in this country";
+						} else if (key == "bots") {
+							document.getElementById("bots").innerHTML = data + " bots, not included";
+						} else if (key == "mins") {
+							document.getElementById("mins").innerHTML = Math.floor(data) + " minutes total viewing";
+						}
+					}, function(data) {
+						document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='mins'>--- minutes total viewing</p>";
+					});
 				});
 			});
+
+			google.charts.load("current", {
+				"packages": ["geochart"],
+				"mapsApiKey": "AIzaSyCHymU-SkCocjx_S-xRUQuaTM9WOZ2ZUoA"
+			});
+			google.charts.setOnLoadCallback(drawRegionsMap);
+
+			function drawRegionsMap() {
+				var chart = new google.visualization.GeoChart(document.getElementById("map"));
+
+				var options = {
+					colorAxis: {colors: ["#e8e8e8", "#4286f4"]}
+				};
+
+				var dataTable;
+
+				app.onLoginChange(function(loggedIn) {
+					if (loggedIn == true) {
+						app.readOnChange("selected", function(key) {
+							if (key != null) {
+								app.readListOnChange("sites/" + siteInfo + "/pages/" + key + "/data/locations", function(data, key) {
+									var mins = data.mins;
+									if (mins == null) {mins = 0;}
+
+									dataTable.push([key, data.visits, Math.floor(data.mins)]);
+
+									chart.draw(google.visualization.arrayToDataTable(dataTable), options);
+								}, function(data) {
+									dataTable = [["Country", "Visits", "Minutes total viewing"]];
+								});
+							}
+						});
+					}
+				});
+			}
 
 			document.getElementById("content").style.display = "none";
 			document.getElementById("info").style.display = "unset";
@@ -183,7 +225,7 @@
 			document.getElementById("buttons").style.display = "unset";
 			document.getElementById("createAlert").style.display = "none";
 			document.getElementById("deleteAlert").style.display = "none";
-			document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
+			document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='mins'>--- minutes total viewing</p>";
 		}
 
 		function deletePage(key) {
@@ -223,7 +265,7 @@
 						document.getElementById("createAlert").style.display = "none";
 						document.getElementById("deleteAlert").style.display = "none";
 						document.getElementById("content").innerHTML = "<h1 id='header'>You haven't selected a site. Please select a site on the 'Sites' page.</h1>";
-						document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
+						document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='mins'>--- minutes total viewing</p>";
 					} else {
 						document.getElementById("content").style.display = "unset";
 						document.getElementById("info").style.display = "none";
@@ -253,7 +295,7 @@
 				document.getElementById("createAlert").style.display = "none";
 				document.getElementById("deleteAlert").style.display = "none";
                 document.getElementById("content").innerHTML = "<h1 id='header'>You aren't logged in. Please log in on the 'Account' page.</h1>";
-				document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='time'>--- minutes total viewing</p>";
+				document.getElementById("infoContent").innerHTML = "<h2 id='visits'>--- Visits</h2><p id='country'>--- in this country</p><p id='bots'>--- bots, not included</p><p id='mins'>--- minutes total viewing</p>";
             }
         });
 	</script>
