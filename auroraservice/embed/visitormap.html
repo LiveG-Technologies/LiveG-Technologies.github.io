@@ -9,7 +9,7 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     </head>
     <body>
-        <div id="map" style="width: 100%; height: 100%;">We haven't collected enough data to show you a map yet.</div>
+        <div id="map" style="width: 100%; height: 100%;"></div>
     </body>
     <script type="text/javascript">
         app.load("Webcount", "webcount");
@@ -39,11 +39,13 @@
 
                                 dataTable.push([key, data.visits, Math.floor(data.mins)]);
 
+                                document.getElementById("map").style.display = "unset";
+
                                 chart.draw(google.visualization.arrayToDataTable(dataTable), options);
                             }, function(data) {
                                 dataTable = [["Country", "Visits", "Minutes total viewing"]];
 
-                                chart.draw(google.visualization.arrayToDataTable(dataTable), options);
+                                document.getElementById("map").style.display = "none";
                             });
                         }
                     });
