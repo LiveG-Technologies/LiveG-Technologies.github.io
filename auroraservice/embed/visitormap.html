@@ -37,7 +37,7 @@
                                 var mins = data.mins;
                                 if (mins == null) {mins = 0;}
 
-                                dataTable.push([key, data.visits, data.mins]);
+                                dataTable.push([key, data.visits, Math.floor(data.mins)]);
 
                                 chart.draw(google.visualization.arrayToDataTable(dataTable), options);
                             }, function(data) {

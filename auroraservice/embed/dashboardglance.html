@@ -28,7 +28,7 @@
                                 if (key == "visits") {
                                     document.getElementById("visits").innerHTML = data + " Visits";
                                 } else if (key == "locations") {
-                                    document.getElementById("country").innerHTML = data[country]["visits"] + " in this country";
+                                    document.getElementById("country").innerHTML = Math.floor(data[country]["visits"]) + " in this country";
                                 } else if (key == "bots") {
                                     document.getElementById("bots").innerHTML = data + " bots, not included";
                                 } else if (key == "mins") {
