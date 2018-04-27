@@ -11,16 +11,39 @@
 			body {
 				text-align: left;
 			}
+
+            button {
+				width: unset;
+			}
         </style>
 	</head>
 	<body>
+        <p>You can use this JSON info to process your data in another application, or use our <a href="https://sites.google.com/view/aurorawebcount/documentation" target="_blank">API</a> to use it on your site.</p>
         <pre id="json">{}</pre>
+        <button onclick="downloadJSON();">Download JSON</button>
 	</body>
     <script type="text/javascript">
         app.load("Webcount", "webcount");
 
+        function download(filename, text) {
+            var element = document.createElement("a");
+            element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
+            element.setAttribute("download", filename);
+
+            element.style.display = "none";
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
         function setJSON(json) {
-            document.getElementById("json").innerHTML = json;
+            document.getElementById("json").innerHTML = json.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function downloadJSON() {
+            download("webcount.json", document.getElementById("json").innerHTML);
         }
     
         app.onLoginChange(function(loggedIn) {
