@@ -1,5 +1,5 @@
 body {
-    font-family: 'Montserrat', 'Open Sans', 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', 'Open Sans', 'Roboto', sans-serif;
     text-align: center;
 }
 
@@ -10,7 +10,7 @@ input {
     display: inline-block;
     border: 1px solid #cccccc;
     box-sizing: border-box;
-    font-family: 'Montserrat', 'Open Sans', 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', 'Open Sans', 'Roboto', sans-serif;
     outline: 0;
 }
 
@@ -21,7 +21,7 @@ button {
     margin: 8px 10px;
     border: none;
     width: calc(25% - 10px);
-    font-family: 'Montserrat', 'Open Sans', 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', 'Open Sans', 'Roboto', sans-serif;
     outline: none;
 }
 
@@ -55,7 +55,7 @@ pre {
 }
 
 .serif {
-    font-family: 'Bitter', 'Arvo', serif;
+    font-family: 'Quicksand', 'Arvo', serif;
 }
 
 .left {
