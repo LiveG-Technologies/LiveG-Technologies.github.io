@@ -30,5 +30,13 @@ var webcount = {
                 }
             } catch (e) {}
         }, 100);
+
+        var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+        var event = window[eventMethod];
+        var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+        event(messageEvent, function(e) {
+            callback(e.data);
+        }, false);
     }
 }

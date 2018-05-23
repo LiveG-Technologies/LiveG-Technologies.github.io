@@ -30,7 +30,7 @@
         site = apiKey.substring(28, 48);
 
         function setJSON(json) {
-            document.getElementById("json").innerHTML = json.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            parent.postMessage(json, "*");
         }
 
         if (apiKey.length == 68) {
