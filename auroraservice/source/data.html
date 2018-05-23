@@ -33,10 +33,10 @@
 
         if (apiKey.length == 68) {
             firebase.database().ref("users/" + user + "/webcount/sites/" + site).on("value", function(snapshot) {
-                setJSON(`{\n    status: {\n        code: 200,\n        message: "Data is found."\n    },\n    data: ` + JSON.stringify(snapshot.val()) + `\n}`);
+                setJSON(`{"status":{"code":200,"message":"Data is found."},"data":` + JSON.stringify(snapshot.val()) + `\n}`);
             });
         } else {
-            setJSON(`{\n    status: {\n        code: 401,\n        message: "The API key is invalid. It should be 68 characters long."\n    }\n}`);
+            setJSON(`{"status":{"code":401,"message":"The API key is invalid. It should be 68 characters long."}}`);
         }
     </script>
 </html>

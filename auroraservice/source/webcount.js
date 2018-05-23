@@ -22,21 +22,12 @@ var webcount = {
 
         document.body.insertAdjacentHTML("beforeend", "<iframe id='dataGet" + id + "' src='https://liveg-technologies.github.io/auroraservice/source/data.html?apiKey=" + webcount.apiKey + "' width='0' height='0' style='border: none;'></iframe>");
 
-        setInterval(function() {
-            try {
-                
-                if (document.getElementById("dataGet" + id).contentWindow.document.getElementById("json").innerHTML.charAt(0) == "{") {
-                    callback(document.getElementById("dataGet" + id).contentWindow.document.getElementById("json").innerHTML);
-                }
-            } catch (e) {}
-        }, 100);
-
         var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
         var event = window[eventMethod];
         var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
 
         event(messageEvent, function(e) {
-            callback(e.data);
+            callback(JSON.parse(e.data));
         }, false);
     }
 }
