@@ -25,15 +25,17 @@
             return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
         }
 
-        app.load("Webcount", "webcount");
+        apiKey = getURLParameter("apiKey")
+        user = apiKey.substring(0, 28);
+        site = apiKey.substring(28, 48);
 
         function setJSON(json) {
             document.getElementById("json").innerHTML = json.replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
 
-        if (getURLParameter("apiKey").length == 68) {
-            app.readOnChange("sites/" + getURLParameter("apiKey"), function(data) {
-                setJSON(`{\n    status: {\n        code: 200,\n        message: "Data is found."\n    },\n    data: ` + JSON.stringify(data) + `\n}`);
+        if (apiKey.length == 68) {
+            firebase.database().ref("users/" + user + "/webcount/sites/" + site).on("value", function(snapshot) {
+                setJSON(`{\n    status: {\n        code: 200,\n        message: "Data is found."\n    },\n    data: ` + JSON.stringify(snapshot.val()) + `\n}`);
             });
         } else {
             setJSON(`{\n    status: {\n        code: 401,\n        message: "The API key is invalid. It should be 68 characters long."\n    }\n}`);

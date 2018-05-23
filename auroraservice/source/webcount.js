@@ -25,8 +25,8 @@ var webcount = {
         setInterval(function() {
             try {
                 
-                if (document.getElementById("pendCheck").contentWindow.document.body.innerHTML.charAt(0) == "{") {
-                    callback(document.getElementById("pendCheck").contentWindow.document.getElementById("json").innerHTML);
+                if (document.getElementById("dataGet" + id).contentWindow.document.getElementById("json").innerHTML.charAt(0) == "{") {
+                    callback(document.getElementById("dataGet" + id).contentWindow.document.getElementById("json").innerHTML);
                 }
             } catch (e) {}
         }, 100);
