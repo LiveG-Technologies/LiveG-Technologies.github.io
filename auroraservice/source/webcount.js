@@ -20,7 +20,7 @@ var webcount = {
     data: function(callback) {
         var id = Math.floor(Math.random() * 100000);
 
-        div.insertAdjacentHTML("beforeend", "<iframe id='dataGet" + id + "' src='https://liveg-technologies.github.io/auroraservice/source/data.html?apiKey=" + webcount.apiKey + "' width='0' height='0' style='border: none;'></iframe>");
+        document.body.insertAdjacentHTML("beforeend", "<iframe id='dataGet" + id + "' src='https://liveg-technologies.github.io/auroraservice/source/data.html?apiKey=" + webcount.apiKey + "' width='0' height='0' style='border: none;'></iframe>");
 
         setInterval(function() {
             try {
