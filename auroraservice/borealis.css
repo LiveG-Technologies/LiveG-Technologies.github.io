@@ -54,6 +54,10 @@ pre {
     overflow-y: auto;
 }
 
+code {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
 .serif {
     font-family: 'Quicksand', 'Arvo', serif;
 }
