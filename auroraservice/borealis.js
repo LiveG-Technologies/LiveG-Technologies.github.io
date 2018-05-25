@@ -1,3 +1,7 @@
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+}
+
 document.getElementById("notsupported").style.display = "none";
 
 var botMined = 0;
@@ -137,3 +141,8 @@ input.addEventListener("keyup", function(event) {
         login();
     }
 });
+
+if (getURLParameter("app") == "true") {
+    document.body.style.backgroundColor = "black";
+    document.body.style.color = "white";
+}
