@@ -40,5 +40,10 @@
                 document.getElementById("content").innerHTML = "<h3>Not logged in.</h3>Please login on the 'Account' page."
             }
         });
+
+        if (getURLParameter("app") == "true") {
+            document.body.style.backgroundColor = "black";
+            document.body.style.color = "white";
+        }
 	</script>
 </html>

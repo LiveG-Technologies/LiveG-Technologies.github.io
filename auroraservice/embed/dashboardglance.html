@@ -15,6 +15,10 @@
         </div>
 	</body>
 	<script>
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        }
+
 		app.load("Webcount", "webcount");
 
         $.getJSON("https://ipapi.co/json", function(data) {
@@ -46,5 +50,10 @@
                 }
             });
         });
+
+        if (getURLParameter("app") == "true") {
+            document.body.style.backgroundColor = "black";
+            document.body.style.color = "white";
+        }
 	</script>
 </html>
