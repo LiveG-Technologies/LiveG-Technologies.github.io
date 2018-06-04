@@ -27,11 +27,11 @@
             if (loggedIn == true) {
                 app.readOnChange("selected", function(key) {
                     if (key == null) {
-                        document.getElementById("content").innerHTML = "<h3>No site selected.</h3><a href='https://sites.google.com/view/aurora-webcount-test/dashboard/sites' target='_blank'>Select a site</a>"
+                        document.getElementById("content").innerHTML = "<h3>No site selected.</h3><a href='https://sites.google.com/view/webcount/dashboard/sites' target='_blank'>Select a site</a>"
                     } else {
                         app.readOnChange("sites/" + key + "/name", function(name) {
                             app.readOnChange("sites/" + key + "/url", function(url) {
-                                document.getElementById("content").innerHTML = "<h3>Site: " + name + "</h3><a href='" + url + "' target='_blank'>Visit</a> <a href='https://sites.google.com/view/aurora-webcount-test/dashboard/sites' target='_blank'>Change</a>"
+                                document.getElementById("content").innerHTML = "<h3>Site: " + name + "</h3><a href='" + url + "' target='_blank'>Visit</a> <a href='https://sites.google.com/view/webcount/dashboard/sites' target='_blank'>Change</a>"
                             });
                         });
                     }
