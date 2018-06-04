@@ -61,6 +61,7 @@
 	<body>
 		<div id="content">
 			<h1 id="header">Please wait...</h1>
+            <p id="error"></p>
 		</div>
 		<div id="changeAlert"></div>
 	</body>
@@ -79,7 +80,11 @@
                 // deleteAccount();
 
                 document.getElementById("content").innerHTML = `
-                    <div style="width: calc(100% - 100px); float: left;">Username</div><button class="secondary" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="changeUsername();"><i class="fas fa-wrench"></i> Change</button><div style="width: calc(100% - 100px); float: left;">E-mail Address</div><button class="secondary" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="changeEmail();"><i class="fas fa-wrench"></i> Change</button><div style="width: calc(100% - 100px); float: left;">Password</div><button class="secondary" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="changePassword();"><i class="fas fa-wrench"></i> Change</button><div style="width: calc(100% - 100px); float: left;">Delete Account</div><button class="bad" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="deleteAccount();"><i class="fas fa-times"></i> Delete</button>
+                    <div style="width: calc(100% - 100px); float: left;">Username</div><button class="secondary" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="changeUsername();"><i class="fas fa-wrench"></i> Change</button>
+                    <div style="width: calc(100% - 100px); float: left;">E-mail Address</div><button class="secondary" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="changeEmail();"><i class="fas fa-wrench"></i> Change</button>
+                    <div style="width: calc(100% - 100px); float: left;">Password</div><button class="secondary" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="changePassword();"><i class="fas fa-wrench"></i> Change</button>
+                    <div style="width: calc(100% - 100px); float: left;">Delete Account</div><button class="bad" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="deleteAccount();"><i class="fas fa-times"></i> Delete</button>
+                    <p id="error"></p>
                 `;
             } else {
                 // Sign out operation.
