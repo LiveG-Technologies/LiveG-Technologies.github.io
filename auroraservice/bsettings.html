@@ -155,7 +155,7 @@
                 <h1>Change Password</h1>
                 Enter your current password to delete your account. You can't undo deletion!<br>
                 <input type="password" id="currentPassword" placeholder="Current password"></input><br>
-                <button class="normal" onclick="doneDelete(true);">Delete</button><button class="normal secondary" onclick="doneDelete(false);">Cancel</button>
+                <button class="normal bad" onclick="doneDelete(true);">Delete</button><button class="normal secondary" onclick="doneDelete(false);">Cancel</button>
                 <p id="error"></p>
             `;
 
@@ -232,7 +232,10 @@
                 }).catch(function(error) {
                     document.getElementById("error").innerHTML = "Oops! We couldn't authenticate you. Maybe incorrect password!";
                 });
-			}
+			} else {
+                document.getElementById("content").style.display = "unset";
+                document.getElementById("changeAlert").style.display = "none";
+            }
 		}
 
 		if (getURLParameter("app") == "true") {
