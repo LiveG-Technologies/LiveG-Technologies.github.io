@@ -223,7 +223,7 @@
                 user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
                     firebase.database().ref("users/" + firebase.auth().currentUser.uid).set(null);
 
-                    user.updatePassword(document.getElementById("newItem").value).then(function() {
+                    user.delete().then(function() {
                         document.getElementById("content").style.display = "unset";
                         document.getElementById("changeAlert").style.display = "none";
                     }).catch(function(error) {
