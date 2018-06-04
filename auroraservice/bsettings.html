@@ -179,7 +179,9 @@
         // currentPassword, newItem
 
 		function doneChange(changed, item = 0) {
-			if (changed && (document.getElementById("currentPassword").value == "" || document.getElementById("newItem").value == "") && item != 0) {
+			if (item != 0 && changed && (document.getElementById("currentPassword").value == "" || document.getElementById("newItem").value == "")) {
+				document.getElementById("error").innerHTML = "Oops! You have not filled out all of the required fields.";
+            } else if (item == 0 && changed && document.getElementById("newItem").value == "") {
 				document.getElementById("error").innerHTML = "Oops! You have not filled out all of the required fields.";
 			} else if (changed) {
                 if (item == 0) {
