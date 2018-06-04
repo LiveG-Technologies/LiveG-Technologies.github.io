@@ -61,7 +61,6 @@
 	<body>
 		<div id="content">
 			<h1 id="header">Please wait...</h1>
-            <p id="error"></p>
 		</div>
 		<div id="changeAlert"></div>
 	</body>
@@ -111,8 +110,6 @@
 		var deleteKey = null;
 
 		function changeUsername() {
-			document.getElementById("error").innerHTML = "";
-
             document.getElementById("changeAlert").innerHTML = `
                 <h1>Change Username</h1>
                 Enter your new username below.<br>
@@ -126,8 +123,6 @@
 		}
 
         function changeEmail() {
-			document.getElementById("error").innerHTML = "";
-
             document.getElementById("changeAlert").innerHTML = `
                 <h1>Change E-mail Address</h1>
                 Enter your current password and your new e-mail address below.<br>
@@ -142,8 +137,6 @@
 		}
 
         function changePassword() {
-			document.getElementById("error").innerHTML = "";
-
             document.getElementById("changeAlert").innerHTML = `
                 <h1>Change Password</h1>
                 Enter your current password and your new password below.<br>
@@ -158,8 +151,6 @@
 		}
 
         function deleteAccount() {
-			document.getElementById("error").innerHTML = "";
-
             document.getElementById("changeAlert").innerHTML = `
                 <h1>Change Password</h1>
                 Enter your current password to delete your account. You can't undo deletion!<br>
