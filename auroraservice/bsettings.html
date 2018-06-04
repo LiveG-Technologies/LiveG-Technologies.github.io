@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="https://liveg-technologies.github.io/auroraservice/borealis.css">
+		<link href="https://fonts.googleapis.com/css?family=Quicksand|Source+Sans+Pro" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+		<script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+            <script>
+            // Initialise Firebase
+            var config = {
+                apiKey: "AIzaSyA_SBi5bWlglxReIf1VJcX7ts71uKX8pIw",
+                authDomain: "aurora-borealis-account.firebaseapp.com",
+                databaseURL: "https://aurora-borealis-account.firebaseio.com",
+                projectId: "aurora-borealis-account",
+                storageBucket: "aurora-borealis-account.appspot.com",
+                messagingSenderId: "360682466514"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+        </script>
+		<style>
+			body {
+				font-size: 20px;
+				text-align: left;
+			}
+
+			#header {
+				text-align: center;
+			}
+
+			button {
+				width: unset;
+			}
+
+			button.normal {
+				width: calc(25% - 10px);
+			}
+
+			hr {
+				display: block;
+				height: 0px;
+				border: 0;
+				border-top: 5px solid #888888;
+				padding: 0; 
+			}
+
+			#changeAlert {
+				text-align: center;
+				display: none;
+			}
+
+			@media (max-width: 600px) {
+				button.normal {
+					width: 80%;
+					margin: 8px 5px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<h1 id="header">Please wait...</h1>
+		</div>
+		<div id="changeAlert"></div>
+	</body>
+	<script>
+		function getURLParameter(name) {
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+		}
+
+        function change(user) {
+            if (user && user.uid != currentUid) {
+                // Sign in operation.
+
+                // changeUsername();
+                // changeEmail();
+                // changePassword();
+                // deleteAccount();
+
+                document.getElementById("content").innerHTML = `
+                    <div style="width: calc(100% - 100px); float: left;">Username</div><button class="secondary" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="changeUsername();"><i class="fas fa-wrench"></i> Change</button><div style="width: calc(100% - 100px); float: left;">E-mail Address</div><button class="secondary" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="changeEmail();"><i class="fas fa-wrench"></i> Change</button><div style="width: calc(100% - 100px); float: left;">Password</div><button class="secondary" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="changePassword();"><i class="fas fa-wrench"></i> Change</button><div style="width: calc(100% - 100px); float: left;">Delete Account</div><button class="bad" style="width: 80px; position: relative; top: -5px; padding: 5px;" onclick="deleteAccount();"><i class="fas fa-times"></i> Delete</button>
+                `;
+            } else {
+                // Sign out operation.
+
+                document.getElementById("content").style.display = "unset";
+                document.getElementById("changeAlert").style.display = "none";
+                document.getElementById("content").innerHTML = "<h1 id='header'>You aren't logged in. Please log in on the 'Account' page.</h1>";
+            }
+        }
+
+		var currentUid = null;
+        var currentEmail = null;
+        firebase.auth().onAuthStateChanged(function(user) {
+            // Checks if user auth state has changed.
+            change(user);
+
+            if (user && user.uid != currentUid) {
+                currentEmail = user.email;
+            } else {
+                currentEmail = null;
+            }
+        });
+
+		var deleteKey = null;
+
+		function changeUsername() {
+			document.getElementById("error").innerHTML = "";
+			document.getElementById("siteName").value = "";
+			document.getElementById("siteURL").value = "";
+
+            document.getElementById("changeAlert").innerHTML = `
+                <h1>Change Username</h1>
+                Enter your new username below.<br>
+                <input id="newItem" placeholder="New username"></input><br>
+                <button class="normal" onclick="doneChange(true, 0);">Change</button><button class="normal secondary" onclick="doneChange(false);">Cancel</button>
+                <p id="error"></p>
+            `;
+
+			document.getElementById("content").style.display = "none";
+			document.getElementById("changeAlert").style.display = "block";
+		}
+
+        function changeEmail() {
+			document.getElementById("error").innerHTML = "";
+			document.getElementById("siteName").value = "";
+			document.getElementById("siteURL").value = "";
+
+            document.getElementById("changeAlert").innerHTML = `
+                <h1>Change E-mail Address</h1>
+                Enter your current password and your new e-mail address below.<br>
+                <input type="password" id="currentPassword" placeholder="Current password"></input><br>
+                <input id="newItem" placeholder="New e-mail address"></input><br>
+                <button class="normal" onclick="doneChange(true, 1);">Change</button><button class="normal secondary" onclick="doneChange(false);">Cancel</button>
+                <p id="error"></p>
+            `;
+
+			document.getElementById("content").style.display = "none";
+			document.getElementById("changeAlert").style.display = "block";
+		}
+
+        function changePassword() {
+			document.getElementById("error").innerHTML = "";
+			document.getElementById("siteName").value = "";
+			document.getElementById("siteURL").value = "";
+
+            document.getElementById("changeAlert").innerHTML = `
+                <h1>Change Password</h1>
+                Enter your current password and your new password below.<br>
+                <input type="password" id="currentPassword" placeholder="Current password"></input><br>
+                <input type="password" id="newItem" placeholder="New password"></input><br>
+                <button class="normal" onclick="doneChange(true, 2);">Change</button><button class="normal secondary" onclick="doneChange(false);">Cancel</button>
+                <p id="error"></p>
+            `;
+
+			document.getElementById("content").style.display = "none";
+			document.getElementById("changeAlert").style.display = "block";
+		}
+
+        function deleteAccount() {
+			document.getElementById("error").innerHTML = "";
+			document.getElementById("siteName").value = "";
+			document.getElementById("siteURL").value = "";
+
+            document.getElementById("changeAlert").innerHTML = `
+                <h1>Change Password</h1>
+                Enter your current password to delete your account. You can't undo deletion!<br>
+                <input type="password" id="currentPassword" placeholder="Current password"></input><br>
+                <button class="normal" onclick="doneDelete(true);">Delete</button><button class="normal secondary" onclick="doneDelete(false);">Cancel</button>
+                <p id="error"></p>
+            `;
+
+			document.getElementById("content").style.display = "none";
+			document.getElementById("changeAlert").style.display = "block";
+		}
+
+        // 0: Username
+        // 1: E-mail
+        // 2: Password
+
+        // currentPassword, newItem
+
+		function doneChange(changed, item = 0) {
+			if (changed && (document.getElementById("currentPassword").value == "" || document.getElementById("newItem").value == "") && item != 0) {
+				document.getElementById("error").innerHTML = "Oops! You have not filled out all of the required fields.";
+			} else if (changed) {
+                if (item == 0) {
+                    firebase.database().ref("users/" + firebase.auth().currentUser.uid + "/_settings/name").set(document.getElementById("newItem").value.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/&/g, "&amp;"));
+                } else if (item == 1) {
+                    var user = firebase.auth().currentUser;
+                    var credential = firebase.auth.EmailAuthProvider.credential(currentEmail, document.getElementById("currentPassword").value);
+
+                    user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
+                        user.updateEmail(document.getElementById("newItem").value).then(function() {
+                            document.getElementById("content").style.display = "unset";
+                            document.getElementById("changeAlert").style.display = "none";
+                        }).catch(function(error) {
+                            document.getElementById("error").innerHTML = "Oops! An error occurred when we were changing your e-mail.";
+                        });
+                    }).catch(function(error) {
+                        document.getElementById("error").innerHTML = "Oops! We couldn't authenticate you. Maybe incorrect password!";
+                    });
+                } else if (item == 2) {
+                    var user = firebase.auth().currentUser;
+                    var credential = firebase.auth.EmailAuthProvider.credential(currentEmail, document.getElementById("currentPassword").value);
+
+                    user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
+                        user.updatePassword(document.getElementById("newItem").value).then(function() {
+                            document.getElementById("content").style.display = "unset";
+                            document.getElementById("changeAlert").style.display = "none";
+                        }).catch(function(error) {
+                            document.getElementById("error").innerHTML = "Oops! An error occurred when we were changing your password.";
+                        });
+                    }).catch(function(error) {
+                        document.getElementById("error").innerHTML = "Oops! We couldn't authenticate you. Maybe incorrect password!";
+                    });
+                }
+			} else {
+				document.getElementById("content").style.display = "unset";
+				document.getElementById("changeAlert").style.display = "none";
+			}
+		}
+
+		function doneDelete(deleted) {
+			if (deleted) {
+                var user = firebase.auth().currentUser;
+                var credential = firebase.auth.EmailAuthProvider.credential(currentEmail, document.getElementById("currentPassword").value);
+
+                user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
+                    firebase.database().ref("users/" + firebase.auth().currentUser.uid).set(null);
+
+                    user.updatePassword(document.getElementById("newItem").value).then(function() {
+                        document.getElementById("content").style.display = "unset";
+                        document.getElementById("changeAlert").style.display = "none";
+                    }).catch(function(error) {
+                        document.getElementById("error").innerHTML = "Oops! An error occurred when we were trying to delete your account.";
+                    });
+                }).catch(function(error) {
+                    document.getElementById("error").innerHTML = "Oops! We couldn't authenticate you. Maybe incorrect password!";
+                });
+			}
+		}
+
+		if (getURLParameter("app") == "true") {
+			document.body.style.backgroundColor = "black";
+			document.body.style.color = "white";
+		}
+	</script>
+</html>
