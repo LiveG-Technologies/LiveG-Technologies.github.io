@@ -225,6 +225,8 @@
                     user.delete().then(function() {
                         document.getElementById("content").style.display = "unset";
                         document.getElementById("changeAlert").style.display = "none";
+
+                        firebase.auth().signOut();
                     }).catch(function(error) {
                         document.getElementById("error").innerHTML = "Oops! An error occurred when we were trying to delete your account.";
                     });
