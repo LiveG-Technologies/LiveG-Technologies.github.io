@@ -13,4 +13,4 @@ Folder paths:
 - **Hey** is a quick, easy and free messaging service. It's at [heychat.cf](http://heychat.cf).
 - **James Livesey's coding site** is a site for developers to learn something new. See it at [jlivesey.cf](http://jlivesey.cf).
 - **MyPlace** is a service where people can upload their own one-page site for free. Visit it at [myplace.tk](http://myplace.tk).
-- **YMTC Cloud** is a site for the people of the [Young Makers Tech Club](http://stepintotech.org/club-details) to store their files on the cloud with Raspberry Pi. The cloud site is at (ymtechclub.tk)[http://ymtechclub.tk].
+- **YMTC Cloud** is a site for the people of the [Young Makers Tech Club](http://stepintotech.org/club-details) to store their files on the cloud with Raspberry Pi. The cloud site is at [ymtechclub.tk](http://ymtechclub.tk).
