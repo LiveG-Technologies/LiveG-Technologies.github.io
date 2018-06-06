@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="https://liveg-technologies.github.io/auroraservice/borealis.css">
+		<link href="https://fonts.googleapis.com/css?family=Quicksand|Source+Sans+Pro" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+		<script src="https://liveg-technologies.github.io/auroraservice/bappapi.js"></script>
+		<script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <style>
+			body {
+				text-align: left;
+                color: white;
+			}
+
+            button {
+				width: unset;
+			}
+
+            a {
+                color: white;
+            }
+
+            a:hover {
+                color: #cccccc;
+            }
+
+            #query {
+                margin: 0;
+            }
+
+            #go {
+                margin: 0;
+                padding: 0;
+                /*padding-top: 13px;
+                padding-bottom: 13px;*/
+                width: 46px;
+                height: 42.5px;
+            }
+        </style>
+	</head>
+	<body>
+        <input id="query"></input><button id="go"><i class="fas fa-search"></i></button><br>
+        <span id="todayMessage"></span>
+	</body>
+    <script type="text/javascript">
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        }
+
+        app.load("Search", "search");
+        
+        app.onLoginChange(function(loggedIn) {
+            if (loggedIn == true) {
+                
+            } else {
+                document.getElementById("todayMessage").innerHTML = "You aren't logged in! <a href='https://sites.google.com/view/anssearch/account' target='_blank'>Log in</a> for a better experience.";
+            }
+        });
+    </script>
+</html>
