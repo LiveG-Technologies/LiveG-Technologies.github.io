@@ -51,24 +51,24 @@
         }
     
         app.onLoginChange(function(loggedIn) {
-                if (loggedIn == true) {
-                    app.readOnChange("selected", function(key) {
-                        if (key != null) {
-                            app.readOnChange("sites/" + key, function(data) {
-                                setJSON(`{\n    "status": {\n        "code": 200,\n        "message": "Data is found."\n    },\n    "data": ` + JSON.stringify(data) + `\n}`);
-                            });
-                        } else {
-                            setJSON(`{\n    "status": {\n        "code": 404,\n        "message": "Site not selected, or site is not found."\n    }\n}`);
-                        }
-                    });
-                } else {
-                    setJSON(`{\n    "status": {\n        "code": 401,\n        "message": "Not signed in."\n    }\n}`);
-                }
-            });
-
-            if (getURLParameter("app") == "true") {
-                document.body.style.backgroundColor = "black";
-                document.body.style.color = "white";
+            if (loggedIn == true) {
+                app.readOnChange("selected", function(key) {
+                    if (key != null) {
+                        app.readOnChange("sites/" + key, function(data) {
+                            setJSON(`{\n    "status": {\n        "code": 200,\n        "message": "Data is found."\n    },\n    "data": ` + JSON.stringify(data) + `\n}`);
+                        });
+                    } else {
+                        setJSON(`{\n    "status": {\n        "code": 404,\n        "message": "Site not selected, or site is not found."\n    }\n}`);
+                    }
+                });
+            } else {
+                setJSON(`{\n    "status": {\n        "code": 401,\n        "message": "Not signed in."\n    }\n}`);
             }
+        });
+
+        if (getURLParameter("app") == "true") {
+            document.body.style.backgroundColor = "black";
+            document.body.style.color = "white";
+        }
     </script>
 </html>
