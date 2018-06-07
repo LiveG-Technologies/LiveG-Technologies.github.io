@@ -68,10 +68,14 @@
         
         app.onLoginChange(function(loggedIn) {
             if (loggedIn == true) {
-                
+                // Today message to go here.
             } else {
                 document.getElementById("todayMessage").innerHTML = "You aren't logged in! <a href='https://sites.google.com/view/anssearch/account' target='_blank'>Log in</a> for a better experience.";
             }
         });
+
+        if (getURLParameter("main") != "true") {
+            document.getElementById("todayMessage").style.display = "none";
+        }
     </script>
 </html>
