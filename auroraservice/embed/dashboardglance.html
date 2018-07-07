@@ -32,7 +32,11 @@
                                 if (key == "visits") {
                                     document.getElementById("visits").innerHTML = data + " Visits";
                                 } else if (key == "locations") {
-                                    document.getElementById("country").innerHTML = data[country]["visits"] + " in this country";
+                                    try {
+                                        document.getElementById("country").innerHTML = data[country]["visits"] + " in this country";
+                                    } catch (e) {
+                                        document.getElementById("country").innerHTML = `None in this country (<a href="https://sites.google.com/view/webcount/re" target="_blank">More...</a>)`;
+                                    }
                                 } else if (key == "bots") {
                                     document.getElementById("bots").innerHTML = data + " bots, not included";
                                 } else if (key == "mins") {
