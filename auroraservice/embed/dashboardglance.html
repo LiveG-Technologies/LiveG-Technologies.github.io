@@ -58,6 +58,12 @@
         if (getURLParameter("app") == "true") {
             document.body.style.backgroundColor = "black";
             document.body.style.color = "white";
+
+            setInterval(function() {
+                for (var i = 0; i < document.getElementsByTagName("a").length; i++) {
+                    document.getElementsByTagName("a")[i].style.color = "white";
+                }
+            }, 100);
         }
 	</script>
 </html>
